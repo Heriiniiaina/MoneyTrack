@@ -1,24 +1,36 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
-
+import Loading from "@/components/Loading";
+import { Raleway_800ExtraBold, useFonts } from '@expo-google-fonts/raleway';
+import { Slot, useRouter, useSegments } from "expo-router";
+import { useEffect, useState } from "react";
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const segments = useSegments();
+  const router = useRouter();
+  const [fontsLoaded] = useFonts({
+    Raleway_800ExtraBold,
+  });
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
-  );
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoggedIn(false);
+      setIsLoading(false);
+    }, 100);
+  }, []);
+
+  useEffect(() => {
+    if (!isLoading) {
+      if (!isLoggedIn) {
+        router.replace("/auth/login");
+      } else if (isLoggedIn) {
+        router.replace("/(tabs)");
+      }
+    }
+  }, [isLoading, isLoggedIn, segments]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  return <Slot />;
 }

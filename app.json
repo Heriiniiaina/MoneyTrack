@@ -38,11 +38,16 @@
             "backgroundColor": "#000000"
           }
         }
-      ]
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "androidStatusBar": {
+      "translucent": false,
+      "backgroundColor": "#000000"
     }
   }
 }
