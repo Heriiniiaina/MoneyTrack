@@ -1,57 +1,157 @@
+import Loading from "@/components/Loading";
 import BudgetAuraTitle from "@/components/Logo";
 import { showToast } from "@/components/ShowToast";
 import { colors } from "@/Constants/Color";
+import { checkEmail, isValidPassword } from "@/Constants/Validator";
+import axios from "axios";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
+} from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 type Props = {};
+type FormType = {
+    name:string,
+    email:string,
+    password:string
+}
+
 
 const Register = (props: Props) => {
-  const [email, setEmail] = useState<string>("")
-  const [password, setPassword] = useState<string>("")
-  const router = useRouter() 
-  const handleSubmit = async ()=>{
-    if (email.length < 1 || password.length < 1)
+  const [isLoading, setIsLoading] = useState<boolean>(false) 
+  const [confirmPass, setConfirmPass] = useState<string>("");
+  const [formInput, setFormInput] = useState<FormType>({
+    email:"",
+    name:"",
+    password:""
+  })
+  const check_form = (form:FormType,confirmPass:string)=>{
+    if (formInput.email.length < 1 || formInput.name.length < 1 || formInput.password.length < 1)
     {
-      showToast("Please provide form");
+        showToast("Please provide form");
+        return false
     }
-    else
-      showToast(email);
+    if (!checkEmail(formInput.email))
+    {
+        showToast("Please prove a valide email");
+        return false
+    }
+    if (!isValidPassword(formInput.password))
+    {
+        showToast("Password must be at least 8 characters and contain both upper and lowercase.");
+        return false
+    }
+    if (formInput.password != confirmPass)
+    {
+        showToast("Passwords do not match.")
+        return false
+    }   
+        
+    return true
   }
+  const router = useRouter();
+  const handleChange = (field:keyof FormType, value:string)=>{
+    setFormInput(prev=>({...prev, [field]:value}))
+  }
+  const handleSubmit = async () => {
+   if (!check_form(formInput, confirmPass))
+        return
+    setIsLoading(true)
+    try {
+        const res = await axios.post("http://192.168.100.216:8000/MoneyTrack/auth/register", formInput)
+        console.log(res.data)
+        showToast("Register successfull")
+        router.replace("/auth/login")
+    } catch (error:any) {
+        console.log(error.response.data.message)
+    }
+    finally{
+        setTimeout(()=>{
+            setIsLoading(false)
+        }, 1000)
+        
+    }
+   
+  };
   return (
     <SafeAreaProvider>
       <SafeAreaView style={style.container}>
         <View style={style.page}>
           <View style={style.title}>
-            <BudgetAuraTitle/>
-            <Text style={{fontSize:30, color:colors.textColor}}>Welcome back!</Text>
+            <BudgetAuraTitle />
+            <Text style={{ fontSize: 30, color: colors.textColor }}>
+              Welcome!
+            </Text>
           </View>
           <View style={style.container_input}>
             <View style={style.input}>
+              <Text style={style.input_label}>Name</Text>
+              <TextInput
+                style={style.text_input}
+                value={formInput.name}
+                onChangeText={(val) => handleChange("name", val)}
+                placeholder="Enter your email"
+                placeholderTextColor={colors.white}
+              />
+            </View>
+            <View style={style.input}>
               <Text style={style.input_label}>Email</Text>
-              <TextInput style={style.text_input} value={email} onChangeText={val=>setEmail(val)} placeholder="Enter your email" placeholderTextColor={colors.white}/>
+              <TextInput
+                style={style.text_input}
+                value={formInput.email}
+                onChangeText={(val) => handleChange("email", val)}
+                placeholder="Enter your email"
+                placeholderTextColor={colors.white}
+              />
             </View>
             <View style={style.input}>
-              <Text style={style.input_label} >Password</Text>
-              <TextInput style={style.text_input} value={password} onChangeText={val=>setPassword(val)} placeholder="Enter your password" placeholderTextColor={colors.white}/>
+              <Text style={style.input_label}>Password</Text>
+              <TextInput
+                style={style.text_input}
+                secureTextEntry={true}
+                value={formInput.password}
+                onChangeText={(val) => handleChange("password", val)}
+                placeholder="Enter your password"
+                placeholderTextColor={colors.white}
+              />
             </View>
             <View style={style.input}>
-              <Text style={style.input_label} >Confirm password</Text>
-              <TextInput style={style.text_input} value={password} onChangeText={val=>setPassword(val)} placeholder="Enter your password" placeholderTextColor={colors.white}/>
+              <Text style={style.input_label}>Confirm password</Text>
+              <TextInput
+                style={style.text_input}
+                value={confirmPass}
+                onChangeText={(val) => setConfirmPass(val)}
+                placeholder="Enter your password"
+                placeholderTextColor={colors.white}
+              />
             </View>
           </View>
           <View style={style.btn}>
-            <TouchableOpacity onPress={handleSubmit}>
-                <Text style={{color:colors.textColor, fontSize:20}}>Create account</Text>
-            </TouchableOpacity>
+            {
+                isLoading ? <Loading/> : <TouchableOpacity onPress={handleSubmit}>
+                <Text style={{ color: colors.textColor, fontSize: 20 }}>
+                  Create account
+                </Text>
+              </TouchableOpacity> 
+            }
           </View>
           <View style={style.signup_btn}>
-              <Text style={style.signup_btn_text}>Already have an account ?</Text>
-              <TouchableOpacity onPress={()=>{router.replace("/auth/login")}}>
-                 <Text style={[style.signup_btn_text, {color:colors.primary}]}>Singin</Text>
-              </TouchableOpacity>
+            <Text style={style.signup_btn_text}>Already have an account ?</Text>
+            <TouchableOpacity
+              onPress={() => {
+                router.replace("/auth/login");
+              }}
+            >
+              <Text style={[style.signup_btn_text, { color: colors.primary }]}>
+                Sign in
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </SafeAreaView>
@@ -63,9 +163,9 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
   },
-  title:{
+  title: {
     alignItems: "center",
-    marginBottom:"10%"
+    marginBottom: "10%",
   },
   page: {
     flex: 1,
@@ -73,47 +173,47 @@ const style = StyleSheet.create({
     color: "white",
     padding: 10,
     flexDirection: "column",
-    gap:15
+    gap: 15,
   },
-  container_input:{
-    gap:15
+  container_input: {
+    gap: 15,
   },
   input: {
     justifyContent: "center",
     flexDirection: "column",
-    width: '100%',
-    gap:10
+    width: "100%",
+    gap: 10,
   },
   input_label: {
     color: colors.textColor,
-    fontSize:20
+    fontSize: 20,
   },
   text_input: {
     backgroundColor: colors.background,
     height: 60,
-    width: '100%', 
-    borderColor:colors.grey,
-    borderWidth:2,
-    borderRadius:10,
-    color:colors.textColor
+    width: "100%",
+    borderColor: colors.grey,
+    borderWidth: 2,
+    borderRadius: 10,
+    color: colors.textColor,
   },
-  btn:{
-    backgroundColor:colors.primary,
-    height:50,
-    borderRadius:20,
-    alignItems:"center",
-    justifyContent:"center"
+  btn: {
+    backgroundColor: colors.primary,
+    height: 50,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
   },
-  signup_btn:{
-    alignItems:"center",
-    justifyContent:"center",
-    flexDirection:"row",
-    gap:10
+  signup_btn: {
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    gap: 10,
   },
-  signup_btn_text:{
-    fontSize:15,
-    color:colors.white
-  }
+  signup_btn_text: {
+    fontSize: 15,
+    color: colors.white,
+  },
 });
 
 export default Register;
