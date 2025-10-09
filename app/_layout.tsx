@@ -15,7 +15,7 @@ export default function RootLayout() {
     setTimeout(() => {
       setIsLoggedIn(false);
       setIsLoading(false);
-    }, 100);
+    }, 200);
   }, []);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function RootLayout() {
         router.replace("/(tabs)");
       }
     }
-  }, [isLoading, isLoggedIn, segments]);
+  }, [isLoading, isLoggedIn]);
 
   if (isLoading) {
     return <Loading />;

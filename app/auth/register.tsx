@@ -8,10 +8,10 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 type Props = {};
 
-const login = (props: Props) => {
+const Register = (props: Props) => {
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
-    const router = useRouter() 
+  const router = useRouter() 
   const handleSubmit = async ()=>{
     if (email.length < 1 || password.length < 1)
     {
@@ -37,21 +37,20 @@ const login = (props: Props) => {
               <Text style={style.input_label} >Password</Text>
               <TextInput style={style.text_input} value={password} onChangeText={val=>setPassword(val)} placeholder="Enter your password" placeholderTextColor={colors.white}/>
             </View>
-          </View>
-          <View style={{alignItems:"flex-end"}}>
-             <TouchableOpacity>
-                <Text style={{color:colors.primary,fontSize:15}}>Forgot password ?</Text>
-             </TouchableOpacity>
+            <View style={style.input}>
+              <Text style={style.input_label} >Confirm password</Text>
+              <TextInput style={style.text_input} value={password} onChangeText={val=>setPassword(val)} placeholder="Enter your password" placeholderTextColor={colors.white}/>
+            </View>
           </View>
           <View style={style.btn}>
             <TouchableOpacity onPress={handleSubmit}>
-                <Text style={{color:colors.textColor, fontSize:20}}>Sign In</Text>
+                <Text style={{color:colors.textColor, fontSize:20}}>Create account</Text>
             </TouchableOpacity>
           </View>
           <View style={style.signup_btn}>
-              <Text style={style.signup_btn_text}>Dont have an account ?</Text>
-              <TouchableOpacity onPress={()=>{router.replace("/auth/register")}}>
-                 <Text style={[style.signup_btn_text, {color:colors.primary}]}>Create accounts</Text>
+              <Text style={style.signup_btn_text}>Already have an account ?</Text>
+              <TouchableOpacity onPress={()=>{router.replace("/auth/login")}}>
+                 <Text style={[style.signup_btn_text, {color:colors.primary}]}>Singin</Text>
               </TouchableOpacity>
           </View>
         </View>
@@ -117,4 +116,4 @@ const style = StyleSheet.create({
   }
 });
 
-export default login;
+export default Register;
