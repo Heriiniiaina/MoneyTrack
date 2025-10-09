@@ -1,24 +1,39 @@
+import Loading from "@/components/Loading";
 import BudgetAuraTitle from "@/components/Logo";
 import { showToast } from "@/components/ShowToast";
 import { colors } from "@/Constants/Color";
+import axios from "axios";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-
 type Props = {};
 
 const login = (props: Props) => {
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
+  const [isLoading, setIsLoading] = useState<boolean>(false)
     const router = useRouter() 
   const handleSubmit = async ()=>{
     if (email.length < 1 || password.length < 1)
     {
       showToast("Please provide form");
+      return;
     }
-    else
-      showToast(email);
+    setIsLoading(true)
+    try {
+      const res = await axios.post("http://192.168.100.216:8000/MoneyTrack/auth/login", {email, password})
+      showToast(res.data.message)
+      router.replace("/(tabs)")
+    } catch (error:any) {
+      showToast(error.response.data.message)
+      console.log(error.response.data)
+    }
+    finally{
+      setTimeout(()=>{
+        setIsLoading(false)
+      }, 1000)
+    }
   }
   return (
     <SafeAreaProvider>
@@ -34,8 +49,8 @@ const login = (props: Props) => {
               <TextInput style={style.text_input} value={email} onChangeText={val=>setEmail(val)} placeholder="Enter your email" placeholderTextColor={colors.white}/>
             </View>
             <View style={style.input}>
-              <Text style={style.input_label} >Password</Text>
-              <TextInput style={style.text_input} value={password} onChangeText={val=>setPassword(val)} placeholder="Enter your password" placeholderTextColor={colors.white}/>
+              <Text style={style.input_label}  >Password</Text>
+              <TextInput style={style.text_input} secureTextEntry={true} value={password} onChangeText={val=>setPassword(val)} placeholder="Enter your password" placeholderTextColor={colors.white}/>
             </View>
           </View>
           <View style={{alignItems:"flex-end"}}>
@@ -44,9 +59,11 @@ const login = (props: Props) => {
              </TouchableOpacity>
           </View>
           <View style={style.btn}>
-            <TouchableOpacity onPress={handleSubmit}>
-                <Text style={{color:colors.textColor, fontSize:20}}>Sign In</Text>
-            </TouchableOpacity>
+            {
+              isLoading ? <Loading/> : <TouchableOpacity onPress={handleSubmit}>
+              <Text style={{color:colors.textColor, fontSize:20}}>Sign In</Text>
+          </TouchableOpacity>
+            }
           </View>
           <View style={style.signup_btn}>
               <Text style={style.signup_btn_text}>Dont have an account ?</Text>
