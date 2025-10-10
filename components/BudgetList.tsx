@@ -1,24 +1,13 @@
-import { colors } from '@/Constants/Color'
-import { getFontSize } from '@/Constants/utils'
 import React from 'react'
-import { Dimensions, StyleSheet, Text, View } from 'react-native'
-import CircularProgressIcon from './ProgressBar'
+import { Dimensions, StyleSheet, View } from 'react-native'
+import BudgetItem from './BudgetItem'
 
 type Props = {}
 const {width, height} = Dimensions.get("window")
 const BudgetList = (props: Props) => {
   return (
     <View style={style.container}>
-      <View style={style.budgetItem}>
-            <View style={style.balance}>
-                <CircularProgressIcon/>
-                <View>
-                    <Text style={{fontSize:15, color:colors.textColor}}>Shopping</Text>
-                    <Text style={{fontSize:12, color:colors.grey}}>Limit: 1500</Text>
-                </View>
-            </View>
-            <Text style={[{fontSize:getFontSize(width, "min"), color:colors.textColor}]}>75%</Text>
-      </View>
+        <BudgetItem/>
     </View>
   )
 }
