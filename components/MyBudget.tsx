@@ -2,6 +2,8 @@ import { colors } from '@/Constants/Color'
 import { getFontSize } from '@/Constants/utils'
 import React from 'react'
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import BudgetList from './BudgetList'
+import LineHr from './LineHr'
 
 type Props = {}
 
@@ -15,6 +17,8 @@ const MyBudget = (props: Props) => {
                 <Text style={[{fontSize:getFontSize(width, "min"), color:colors.textColor}]}>View all</Text>
             </TouchableOpacity>
         </View>
+        <BudgetList/>
+        <LineHr/>
     </View>
   )
 }
