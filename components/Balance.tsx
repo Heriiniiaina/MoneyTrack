@@ -4,10 +4,13 @@ import { Feather } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
+
 type Props = {};
 const {width, height} = Dimensions.get("window")
+const TAB_BAR_HEIGHT = height * 0.11;
 const Balance = (props: Props) => {
   return (
+    
     <LinearGradient
       colors={[colors.background, colors.primary]}
       start={{ x: 0.5, y: 0.0 }}

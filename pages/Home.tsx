@@ -3,17 +3,25 @@ import MyBudget from '@/components/MyBudget'
 import Profile_Top from '@/components/Profile_Top'
 import { colors } from '@/Constants/Color'
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
 
 type Props = {}
-
+const { height } = Dimensions.get('window')
+const TAB_BAR_HEIGHT = height * 0.11
 const Home = (props: Props) => {
   return (
+    <ScrollView
+    style={style.container}
+    contentContainerStyle={{ paddingBottom: TAB_BAR_HEIGHT + 20 }} // padding pour éviter d'être caché par la tabBar
+    showsVerticalScrollIndicator={true}
+  >
     <View style={style.container}>
       <Profile_Top/>
       <Balance/>
       <MyBudget/>
     </View>
+  </ScrollView>
+    
   )
 }
 
