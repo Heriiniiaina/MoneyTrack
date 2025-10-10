@@ -5,7 +5,15 @@ import { Tabs } from 'expo-router';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 export default function TabLayout() {
   return (
-    <Tabs screenOptions={{ headerShown: false, tabBarStyle:style.tabBar, tabBarActiveTintColor: '#FF5733', tabBarInactiveTintColor: '#c9c9c9',  }}  >
+    <Tabs
+    screenOptions={{
+      headerShown: false,
+      tabBarStyle: style.tabBar,
+      tabBarActiveTintColor: '#FF5733',
+      tabBarInactiveTintColor: '#c9c9c9',
+      
+    }}
+  >
       <Tabs.Screen name="index" options={{
         title: 'Home', tabBarIcon: () => (
           <Ionicons name='home-sharp' size={30} color={"#c9c9c9"}/>
@@ -48,13 +56,14 @@ export default function TabLayout() {
 
 const style = StyleSheet.create({
     tabBar:{
-        backgroundColor:colors.background,
+        backgroundColor:colors.grey,
         borderTopLeftRadius:25,
         borderTopRightRadius:25,
         height: 90,          
         paddingBottom: 10,   
         paddingTop: 20, 
-        color:"#949494"
+        color:"#949494",
+        borderColor:"transparent"
     },
     center:{
         width:100,

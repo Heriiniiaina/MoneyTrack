@@ -1,7 +1,9 @@
 import Loading from "@/components/Loading";
-import { Raleway_800ExtraBold, useFonts } from '@expo-google-fonts/raleway';
+import { colors } from "@/Constants/Color";
+import { Raleway_800ExtraBold, useFonts } from "@expo-google-fonts/raleway";
 import { Slot, useRouter, useSegments } from "expo-router";
 import { useEffect, useState } from "react";
+import { View } from "react-native";
 export default function RootLayout() {
   const segments = useSegments();
   const router = useRouter();
@@ -13,7 +15,7 @@ export default function RootLayout() {
 
   useEffect(() => {
     setTimeout(() => {
-      setIsLoggedIn(false);
+      setIsLoggedIn(true);
       setIsLoading(false);
     }, 200);
   }, []);
@@ -32,5 +34,9 @@ export default function RootLayout() {
     return <Loading />;
   }
 
-  return <Slot />;
+  return (
+    <View style={{flex:1,backgroundColor:colors.background}}>
+      <Slot />
+    </View>
+  );
 }
