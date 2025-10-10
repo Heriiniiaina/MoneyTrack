@@ -1,10 +1,11 @@
 import { colors } from "@/Constants/Color";
+import { getFontSize } from "@/Constants/utils";
 import { Feather } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
 type Props = {};
-
+const {width, height} = Dimensions.get("window")
 const Balance = (props: Props) => {
   return (
     <LinearGradient
@@ -16,15 +17,15 @@ const Balance = (props: Props) => {
       <View style={style.container}>
         <View style={style.totalBalance}>
           <View>
-            <Text style={{ color: colors.textColor, fontSize: 15 }}>
+            <Text style={{ color: colors.textColor, fontSize: getFontSize(width, "min") }}>
               Total balance
             </Text>
-            <Text style={{ color: colors.textColor, fontSize: 20 }}>
+            <Text style={{ color: colors.textColor, fontSize: getFontSize(width, "max") }}>
               Ar. 390000
             </Text>
           </View>
           <View>
-            <Text style={[{ color: colors.textColor }, style.date]}>
+            <Text style={[{ color: colors.textColor, fontSize:getFontSize(width, "other") }, style.date]}>
               Sep 2025
             </Text>
           </View>
@@ -35,12 +36,12 @@ const Balance = (props: Props) => {
               <Feather
                 style={{ color: colors.textColor }}
                 name="arrow-up"
-                size={20}
+                size={width < 400 ? width* 0.05 : width * 0.06}
               />
             </View>
             <View>
-              <Text style={{ color: colors.textColor }}>Income</Text>
-              <Text style={{ color: colors.textColor }}>Ar. 10000</Text>
+              <Text style={[{ color: colors.textColor, fontSize:getFontSize(width, "min") }]}>Income</Text>
+              <Text style={[{ color: colors.textColor, fontSize:getFontSize(width, "max") }]}>Ar. 10000</Text>
             </View>
           </View>
           <View style={style.transaction}>
@@ -48,12 +49,12 @@ const Balance = (props: Props) => {
               <Feather
                 style={{ color: colors.textColor }}
                 name="arrow-down"
-                size={20}
+                size={width < 400 ? width* 0.05 : width * 0.06}
               />
             </View>
             <View>
-              <Text style={{ color: colors.textColor }}>Expense</Text>
-              <Text style={{ color: colors.textColor }}>Ar. 10000</Text>
+              <Text style={[{ color: colors.textColor, fontSize:getFontSize(width, "min") }]}>Expense</Text>
+              <Text style={[{ color: colors.textColor, fontSize:getFontSize(width, "max") }]}>Ar. 10000</Text>
             </View>
           </View>
         </View>
@@ -93,7 +94,7 @@ const style = StyleSheet.create({
   transaction:{
     flexDirection:"row",
     alignItems:"center",
-    gap:5
+    gap:10
   },
   transactionIcon:{
     borderRadius:50,
