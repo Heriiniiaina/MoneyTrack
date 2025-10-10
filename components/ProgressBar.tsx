@@ -1,9 +1,14 @@
+import { colors } from '@/Constants/Color';
 import { FontAwesome } from '@expo/vector-icons'; // Ou une autre lib d'icônes
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 
-const CircularProgressIcon = ({ progress = 75, radius = 40, strokeWidth = 8, color = '#3498db' }) => {
+const {width} = Dimensions.get("window")
+let iconSize = width * 0.038;
+if (width < 400)
+    iconSize = width * 0.029
+const CircularProgressIcon = ({ progress = 75, radius = iconSize, strokeWidth = 2, color = '#3498db', type = "heart" }) => {
   const normalizedRadius = radius - strokeWidth / 2;
   const circumference = 2 * Math.PI * normalizedRadius;
   const strokeDashoffset = circumference - (progress / 100) * circumference;
@@ -11,18 +16,17 @@ const CircularProgressIcon = ({ progress = 75, radius = 40, strokeWidth = 8, col
   return (
     <View style={styles.container}>
       <Svg height={radius * 2} width={radius * 2}>
-        {/* Cercle de fond */}
+       
         <Circle
-          stroke="#e6e6e6"
+          stroke={colors.background}
           fill="none"
           cx={radius}
           cy={radius}
           r={normalizedRadius}
           strokeWidth={strokeWidth}
         />
-        {/* Cercle de progression */}
         <Circle
-          stroke={color}
+          stroke={colors.primary}
           fill="none"
           cx={radius}
           cy={radius}
@@ -36,9 +40,8 @@ const CircularProgressIcon = ({ progress = 75, radius = 40, strokeWidth = 8, col
           originY={radius}
         />
       </Svg>
-      {/* Icône centrée */}
       <View style={[styles.iconWrapper, { width: radius * 2, height: radius * 2 }]}>
-        <FontAwesome name="heart" size={radius} color="#333" />
+        <FontAwesome name={type} size={radius} color={colors.textColor} />
       </View>
     </View>
   );
