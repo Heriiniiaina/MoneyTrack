@@ -1,3 +1,4 @@
+import Balance from '@/components/Balance'
 import Profile_Top from '@/components/Profile_Top'
 import { colors } from '@/Constants/Color'
 import React from 'react'
@@ -9,6 +10,7 @@ const Home = (props: Props) => {
   return (
     <View style={style.container}>
       <Profile_Top/>
+       <Balance/>
     </View>
   )
 }
