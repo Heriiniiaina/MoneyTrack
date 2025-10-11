@@ -1,6 +1,7 @@
 import Balance from '@/components/Balance'
 import MyBudget from '@/components/MyBudget'
 import Profile_Top from '@/components/Profile_Top'
+import RecentTransaction from '@/components/RecentTransaction'
 import { colors } from '@/Constants/Color'
 import React from 'react'
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
@@ -19,6 +20,7 @@ const Home = (props: Props) => {
       <Profile_Top/>
       <Balance/>
       <MyBudget/>
+      <RecentTransaction/>
     </View>
   </ScrollView>
     
