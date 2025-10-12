@@ -1,10 +1,11 @@
+import HelpScreen from '@/components/HelpScreen'
 import React from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 
 const analystics = () => {
   return (
-    <View>
-      <Text>analystics</Text>
+    <View style={{flex:1}}>
+      <HelpScreen/>
     </View>
   )
 }

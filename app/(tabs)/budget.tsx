@@ -1,11 +1,16 @@
 import React from 'react'
 import { Text, View } from 'react-native'
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 
 const budget = () => {
   return (
-    <View>
-      <Text>budget</Text>
-    </View>
+  <SafeAreaProvider>
+        <SafeAreaView>
+          <View>
+            <Text>buasdgeta eeeeeeee</Text>
+          </View>
+        </SafeAreaView>
+      </SafeAreaProvider>
   )
 }
 

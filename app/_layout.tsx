@@ -25,7 +25,7 @@ export default function RootLayout() {
       if (!isLoggedIn) {
         router.replace("/auth/login");
       } else if (isLoggedIn) {
-        router.replace("/(tabs)");
+        router.replace("/(tabs)/budget");
       }
     }
   }, [isLoading, isLoggedIn]);

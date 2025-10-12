@@ -1,5 +1,6 @@
 import { colors } from '@/Constants/Color'
 import { getFontSize } from '@/Constants/utils'
+import { useRouter } from 'expo-router'
 import React from 'react'
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import BudgetList from './BudgetList'
@@ -9,11 +10,12 @@ type Props = {}
 
 const {width} = Dimensions.get("window")
 const MyBudget = (props: Props) => {
+    const router = useRouter()
   return (
     <View style={style.container}>
         <View style={style.titleBudget}>
             <Text style={[{fontSize:getFontSize(width, "max"), color:colors.textColor}]}>My budget</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>{router.replace("/transaction/budget")}}>
                 <Text style={[{fontSize:getFontSize(width, "min"), color:colors.textColor}]}>View all</Text>
             </TouchableOpacity>
         </View>
