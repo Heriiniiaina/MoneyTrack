@@ -11,3 +11,7 @@ export const getFontSize = (width:number, type:string):number=>{
         return 14
     return 18
 }
+export function capitalize(str: string): string {
+    if (!str) return "";
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  }

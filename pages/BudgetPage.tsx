@@ -1,3 +1,5 @@
+import BudgetView from "@/components/BudgetView";
+import MyBudgetTitle from "@/components/MyBudgetTitle";
 import TitleTransctionComponent from "@/components/TitleTransctionComponent";
 import { colors } from "@/Constants/Color";
 import React from "react";
@@ -16,6 +18,8 @@ const BudgetPage = (props: Props) => {
     >
       <View style={style.container}>
             <TitleTransctionComponent route={"/(tabs)"} text="Budget" width={width}/>
+            <MyBudgetTitle />
+            <BudgetView name="car" color="#835294" backgroundColor="#83529480" type="transport"/>
       </View>
     </ScrollView>
   );
