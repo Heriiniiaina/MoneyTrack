@@ -1,14 +1,12 @@
+import BudgetPage from '@/pages/BudgetPage'
 import React from 'react'
-import { Text, View } from 'react-native'
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 
 const budget = () => {
   return (
   <SafeAreaProvider>
-        <SafeAreaView>
-          <View>
-            <Text>buasdgeta eeeeeeee</Text>
-          </View>
+        <SafeAreaView style={{flex:1}}>
+            <BudgetPage/>
         </SafeAreaView>
       </SafeAreaProvider>
   )

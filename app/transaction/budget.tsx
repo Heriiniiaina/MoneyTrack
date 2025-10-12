@@ -1,5 +1,6 @@
+import BudgetPage from "@/pages/BudgetPage";
 import React from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 type Props = {};
@@ -9,7 +10,7 @@ const budget = (props: Props) => {
     <SafeAreaProvider>
       <SafeAreaView>
         <View>
-          <Text>budget eeeeeeeee</Text>
+             <BudgetPage/>
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
