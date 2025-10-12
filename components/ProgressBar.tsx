@@ -7,7 +7,7 @@ import Svg, { Circle } from 'react-native-svg';
 const {width} = Dimensions.get("window")
 let iconSize = width * 0.038;
 if (width < 400)
-    iconSize = width * 0.029
+    iconSize = width * 0.031
 const CircularProgressIcon = ({ progress = 75, radius = iconSize, strokeWidth = 2, color = '#3498db', type = "heart" }) => {
   const normalizedRadius = radius - strokeWidth / 2;
   const circumference = 2 * Math.PI * normalizedRadius;

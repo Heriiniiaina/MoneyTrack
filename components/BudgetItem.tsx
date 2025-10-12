@@ -13,7 +13,7 @@ const BudgetItem = (props: Props) => {
                <View style={style.balance}>
                    <CircularProgressIcon/>
                    <View>
-                       <Text style={{fontSize:getFontSize(width,"max") - 4, color:colors.textColor}}>Shopping</Text>
+                       <Text style={{fontSize:getFontSize(width,"max") - 3, color:colors.textColor}}>Shopping</Text>
                        <Text style={{fontSize:getFontSize(width,"min") - 2, color:colors.grey}}>Limit: 1500</Text>
                    </View>
                </View>
