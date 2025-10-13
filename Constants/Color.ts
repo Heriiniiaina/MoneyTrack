@@ -9,3 +9,9 @@ export const colors = {
     textColor:"#EDEDED"
   };
   
+export const btnColor = {
+  transport:"#835294",
+  backTranport:"#83529426",
+  shopping:"#9c6368",
+ 
+} 

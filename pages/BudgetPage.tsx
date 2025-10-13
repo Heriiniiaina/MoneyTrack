@@ -1,6 +1,7 @@
 import BudgetView from "@/components/BudgetView";
 import MyBudgetTitle from "@/components/MyBudgetTitle";
 import TitleTransctionComponent from "@/components/TitleTransctionComponent";
+import { getCardInfo } from "@/Constants/CardUtils";
 import { colors } from "@/Constants/Color";
 import React from "react";
 import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
@@ -19,7 +20,7 @@ const BudgetPage = (props: Props) => {
       <View style={style.container}>
             <TitleTransctionComponent route={"/(tabs)"} text="Budget" width={width}/>
             <MyBudgetTitle />
-            <BudgetView name="car" color="#835294" backgroundColor="#83529480" type="transport"/>
+            <BudgetView card={getCardInfo("transport")}/>
       </View>
     </ScrollView>
   );

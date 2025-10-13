@@ -1,39 +1,43 @@
-import { AntDesignTypeName } from "@/Constants/type";
-import { capitalize } from "@/Constants/utils";
+import { colors } from "@/Constants/Color";
+import { CardType } from "@/Constants/type";
+import { capitalize, getFontSize } from "@/Constants/utils";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
 import ProgressBar from "./HorizontalProgressBar";
-
 type Props = {
-  name: AntDesignTypeName;
-  color: string;
-  backgroundColor: string;
-  type: string;
+ card:CardType
 };
+const {width} = Dimensions.get("window")
 
-const BudgetView = ({ name, color, backgroundColor, type }: Props) => {
+const iconSize = width < 400 ? width * 0.06 : 0.07
+
+const BudgetView = ({ card}: Props) => {
   return (
     <View style={style.container}>
       <View style={style.title}>
         <View style={style.iconStyle}>
-          <View style={[{ backgroundColor: backgroundColor }]}>
-            <AntDesign name={name} style={{ color: color }} />
+          <View style={[{ backgroundColor: card.background, width:iconSize+10, height:iconSize+10, justifyContent:"center", alignItems:"center", borderRadius:10 }]}>
+            <AntDesign name={card.name} style={{ color: card.color }} size={iconSize}/>
           </View>
           <View>
-            <Text>{capitalize(type)}</Text>
+            <Text style={{color:colors.textColor}}>{capitalize(card.type)}</Text>
           </View>
         </View>
         <View>
-            <Entypo name="dots-three-vertical"/>
+            <Entypo style={{color:colors.textColor}} name="dots-three-vertical"/>
         </View>
       </View>
       <View style={{flexDirection:"row", justifyContent:"space-between"}}>
-        <Text>Ar 190</Text>
-        <Text>50%</Text>
+        <Text style={{color:colors.textColor, fontSize:getFontSize(width, "max")}}>Ar 190</Text>
+        <Text style={{color:colors.textColor, fontSize:getFontSize(width, "min")}}>50%</Text>
       </View>
       <View>
-        <ProgressBar progress={51} height={5}/>
+        <ProgressBar progress={51} height={5} color={colors.primary}/>
+      </View>
+      <View style={{flexDirection:"row", alignItems:"center", justifyContent:"space-between"}}>
+         <Text style={{color:colors.textColor, fontSize:getFontSize(width, "min")}}>Ar120</Text>
+         <Text style={{color:colors.textColor, fontSize:getFontSize(width, "min")}}>Ar 60 left</Text>
       </View>
     </View>
   );
@@ -42,7 +46,11 @@ const BudgetView = ({ name, color, backgroundColor, type }: Props) => {
 
 const style = StyleSheet.create({
 container:{
-    padding:10
+    padding:20,
+    gap:10,
+    backgroundColor:colors.grey,
+    margin:"2%",
+    borderRadius:10
     },
   iconStyle: {
     flexDirection:"row",
