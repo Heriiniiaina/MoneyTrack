@@ -1,6 +1,5 @@
 import AddBudgetPage from "@/pages/AddBudgetPage";
 import React from "react";
-import { View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 type Props = {};
@@ -8,10 +7,8 @@ type Props = {};
 const addbudget = (props: Props) => {
   return (
     <SafeAreaProvider>
-      <SafeAreaView>
-        <View>
-             <AddBudgetPage/>
-        </View>
+      <SafeAreaView style={{flex:1}}>
+            <AddBudgetPage/>
       </SafeAreaView>
     </SafeAreaProvider>
   );
