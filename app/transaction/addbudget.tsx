@@ -1,20 +1,20 @@
-import BudgetPage from "@/pages/BudgetPage";
+import AddBudgetPage from "@/pages/AddBudgetPage";
 import React from "react";
 import { View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 type Props = {};
 
-const budget = (props: Props) => {
+const addbudget = (props: Props) => {
   return (
     <SafeAreaProvider>
       <SafeAreaView>
         <View>
-             <BudgetPage/>
+             <AddBudgetPage/>
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
   );
 };
 
-export default budget;
+export default addbudget;

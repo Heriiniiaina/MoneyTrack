@@ -1,6 +1,7 @@
 import { colors } from '@/Constants/Color'
 import { getFontSize } from '@/Constants/utils'
 import { AntDesign } from '@expo/vector-icons'
+import { useRouter } from 'expo-router'
 import React from 'react'
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
@@ -13,11 +14,11 @@ const {width} = Dimensions.get("window")
 
 const iconSize = width < 400 ? width * 0.03 : width * 0.05
 const MyBudgetTitle = () => {
-
+  const router = useRouter()
   return (
     <View style={style.container}>
       <Text style={{color:colors.textColor, fontSize:getFontSize(width, "max")}}>My budgets</Text>
-      <TouchableOpacity style={style.btnAdd}>
+      <TouchableOpacity style={style.btnAdd} onPress={()=>{router.replace("/transaction/addbudget")}}>
          <AntDesign name='plus' size={iconSize} style={{color:colors.primary}}/>
       </TouchableOpacity>
     </View>

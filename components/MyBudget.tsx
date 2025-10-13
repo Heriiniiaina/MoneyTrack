@@ -15,7 +15,7 @@ const MyBudget = (props: Props) => {
     <View style={style.container}>
         <View style={style.titleBudget}>
             <Text style={[{fontSize:getFontSize(width, "max"), color:colors.textColor}]}>My budget</Text>
-            <TouchableOpacity onPress={()=>{router.replace("/transaction/budget")}}>
+            <TouchableOpacity onPress={()=>{router.replace("/(tabs)/budget")}}>
                 <Text style={[{fontSize:getFontSize(width, "min"), color:colors.textColor}]}>View all</Text>
             </TouchableOpacity>
         </View>
