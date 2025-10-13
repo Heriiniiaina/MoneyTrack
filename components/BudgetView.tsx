@@ -6,13 +6,14 @@ import React from "react";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
 import ProgressBar from "./HorizontalProgressBar";
 type Props = {
- card:CardType
+ card:CardType,
+ progress:number
 };
 const {width} = Dimensions.get("window")
 
 const iconSize = width < 400 ? width * 0.06 : 0.07
 
-const BudgetView = ({ card}: Props) => {
+const BudgetView = ({ card, progress}: Props) => {
   return (
     <View style={style.container}>
       <View style={style.title}>
@@ -30,10 +31,10 @@ const BudgetView = ({ card}: Props) => {
       </View>
       <View style={{flexDirection:"row", justifyContent:"space-between"}}>
         <Text style={{color:colors.textColor, fontSize:getFontSize(width, "max")}}>Ar 190</Text>
-        <Text style={{color:colors.textColor, fontSize:getFontSize(width, "min")}}>50%</Text>
+        <Text style={{color:colors.textColor, fontSize:getFontSize(width, "min")}}>{progress}%</Text>
       </View>
       <View>
-        <ProgressBar progress={51} height={5} color={colors.primary}/>
+        <ProgressBar progress={progress} height={5} color={colors.primary}/>
       </View>
       <View style={{flexDirection:"row", alignItems:"center", justifyContent:"space-between"}}>
          <Text style={{color:colors.textColor, fontSize:getFontSize(width, "min")}}>Ar120</Text>

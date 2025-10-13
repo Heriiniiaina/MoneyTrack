@@ -20,7 +20,9 @@ const BudgetPage = (props: Props) => {
       <View style={style.container}>
             <TitleTransctionComponent route={"/(tabs)"} text="Budget" width={width}/>
             <MyBudgetTitle />
-            <BudgetView card={getCardInfo("transport")}/>
+            <BudgetView progress={50} card={getCardInfo("transport")}/>
+            <BudgetView progress={70} card={getCardInfo("shop")}/>
+            <BudgetView progress={95} card={getCardInfo("health")}/>
       </View>
     </ScrollView>
   );

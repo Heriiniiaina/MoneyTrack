@@ -9,7 +9,7 @@ const ProgressBar = ({ progress = 0, height = 10, color = '#00BFA5', backgroundC
 
   return (
     <View style={[styles.container, { height, backgroundColor }]}>
-      <View style={[styles.progressBar, { width: `${clampedProgress}%`, backgroundColor: color }]} />
+      <View style={[styles.progressBar, { width: `${clampedProgress}%`, backgroundColor: progress < 90 ? color : "red" }]} />
     </View>
   );
 };
