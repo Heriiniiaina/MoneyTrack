@@ -22,7 +22,7 @@ const BudgetView = ({ card, progress}: Props) => {
             <AntDesign name={card.name} style={{ color: card.color }} size={iconSize}/>
           </View>
           <View>
-            <Text style={{color:colors.textColor}}>{capitalize(card.type)}</Text>
+            <Text style={{color:colors.textColor}}>{capitalize(card.title)}</Text>
           </View>
         </View>
         <View>

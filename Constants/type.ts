@@ -5,5 +5,6 @@ export type CardType = {
     name:AntDesignTypeName,
     color:string,
     background:string,
-    type:string
+    type:string,
+    title:string
 }
