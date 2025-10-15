@@ -1,6 +1,9 @@
+import { colors } from '@/Constants/Color';
+import { groupDataByDate, GroupedSection } from '@/Constants/SortByDate';
 import { TransactionType } from '@/Constants/type';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import LineHr from './LineHr';
 import TransactionItem from './TransactionItem';
 
 type Props = {}
@@ -89,22 +92,35 @@ const transactions:TransactionType[] = [
   ];
 
   
-
+const sorted:GroupedSection[] = groupDataByDate(transactions)
+console.log(sorted)
+console.log(sorted[0].data)
 const TransactionList = (props: Props) => {
   return (
     <View>
-       {
-         transactions.map((transaction, index)=>{
-
-            return <TransactionItem transaction={transaction} key={index}/>
-         })
-       }
+        {
+            sorted.map((transaction, index)=>{
+                return (<View style={style.item} key={index}>
+                    <Text style={{color:colors.textColorTransparent}}>{transaction.title}</Text>
+                    {
+                        transaction.data.map((tr, i)=>{
+                            return <TransactionItem transaction={tr} key={i}/>
+                        })
+                    }
+                    <LineHr/>
+                </View>)
+            })
+        }
+      
     </View>
   )
 }
 const style = StyleSheet.create({
     container:{
         
+    },
+    item:{
+        padding:10
     }
 })
 

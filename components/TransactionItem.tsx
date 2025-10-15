@@ -44,7 +44,7 @@ const style = StyleSheet.create({
     container:{
         flexDirection:"row",
         justifyContent:"space-between",
-        padding:10
+        paddingVertical:10
     },
     iconType:{
         flexDirection:"row",
