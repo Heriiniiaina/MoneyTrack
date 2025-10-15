@@ -33,7 +33,7 @@ const TransactionItem = ({transaction}: Props) => {
                 <Text style={{color:colors.textColorTransparent, fontSize:getFontSize(width, "min") - 2}}>{capitalize(transaction.note)}</Text>
             </View>
        </View>
-       <View>
+       <View style={{alignItems:"center"}}>
             <Text style={{color:colors.primary, fontSize:getFontSize(width, "other") - 2}}>{transaction.amount}</Text>
             <Text style={{color:colors.textColorTransparent, fontSize:getFontSize(width, "min") - 2}}>05:00PM</Text>
        </View>
