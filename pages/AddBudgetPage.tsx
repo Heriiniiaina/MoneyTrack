@@ -1,9 +1,13 @@
+import Loading from "@/components/Loading";
 import SelectedComponents, {
   SelectedType,
 } from "@/components/SelectedComponents";
+import { showToast } from "@/components/ShowToast";
 import TitleTransctionComponent from "@/components/TitleTransctionComponent";
 import { colors } from "@/Constants/Color";
+import { url } from "@/Constants/url";
 import { getFontSize } from "@/Constants/utils";
+import axios from "axios";
 import React, { useState } from "react";
 import {
   Dimensions,
@@ -41,7 +45,41 @@ const categoryList: SelectedType[] = [
 ];
 const AddBudgetPage = (props: Props) => {
   const [category, setCategory] = useState<string>("");
-
+  const [amount, setAmount] = useState<string>("");
+  const [note, setNote] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const handleSubmit = async () => {
+    if (amount.length < 1 || category.length < 1 || note.length < 1)
+    {
+      showToast("Please provide");
+      return;
+    }
+    setIsLoading(true);
+    try {
+      const res = await axios.post(
+        `${url}/budget/add`,
+        { note, category, amount, userId: "68e7928aa6644f6bc8746bc9" }
+      );
+      showToast(res.data.message);
+    }  
+    catch (error: any) {
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          console.log("Response error:", error.response.data);
+        } else if (error.request) {
+          console.log("No response received:", error.request);
+        } else {
+          console.log("Axios error:", error.message);
+        }
+      } else {
+        console.log("Non-Axios error:", error);
+      }
+    }
+    finally {
+      setIsLoading(false);
+      
+    }
+  };
   return (
     <View style={style.container}>
       <View>
@@ -63,6 +101,9 @@ const AddBudgetPage = (props: Props) => {
             style={style.textInput}
             placeholder="Amount"
             placeholderTextColor={colors.placeholder}
+            keyboardType="numeric"
+            inputMode="numeric"
+            onChangeText={(value) => setAmount(value)}
           />
         </View>
         <View style={{ padding: 10 }}>
@@ -99,12 +140,23 @@ const AddBudgetPage = (props: Props) => {
             }}
             multiline={true}
             numberOfLines={4}
+            onChangeText={(value) => setNote(value)}
           />
         </View>
-          <TouchableOpacity style={style.btn}>
-            <Text style={{color:colors.textColor, fontSize:getFontSize(width, "max")}}>Add Budget</Text>
-          </TouchableOpacity>
-       
+        <TouchableOpacity style={style.btn} onPress={handleSubmit}>
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <Text
+              style={{
+                color: colors.textColor,
+                fontSize: getFontSize(width, "max"),
+              }}
+            >
+              Add Budget
+            </Text>
+          )}
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -134,9 +186,9 @@ const style = StyleSheet.create({
     alignItems: "center",
     marginTop: height * 0.1,
     backgroundColor: colors.primary,
-    height:height * 0.05,
-    margin:10,
-    borderRadius:10
+    height: height * 0.05,
+    margin: 10,
+    borderRadius: 10,
   },
 });
 export default AddBudgetPage;
