@@ -40,7 +40,7 @@ const SelectedComponents = ({ item, setSelected, selected }: Props) => {
             <TouchableOpacity key={index} style={[style.iconContain, {borderColor:isSelected ? colors.primary : colors.textColor}]} onPress={()=>handleClick(it.name)}>
               <View style={{alignItems:"center"}}>
                 {getIconName(it.name)}
-                <Text style={{fontSize:getFontSize(width, "min")- 3, color:isSelected ? colors.primary : colors.textColor}}>{capitalize(it.name)}</Text>
+                <Text style={{fontSize:getFontSize(width, "min")- 2, color:isSelected ? colors.primary : colors.textColor}}>{capitalize(it.name)}</Text>
               </View>
             </TouchableOpacity>
         );
@@ -57,8 +57,8 @@ const style = StyleSheet.create({
     padding:10
   },
   iconContain: {
-    height: iconSize + 25,
-    width: iconSize + 25,
+    height: iconSize + 30,
+    width: iconSize + 30,
     borderWidth: 1,
     justifyContent:"center",
     alignItems:"center",
