@@ -23,7 +23,7 @@ export const getIconType = (category:string)=>{
 }  
 const TransactionItem = ({transaction}: Props) => {
   return (
-    <View>
+    <View style={style.container}>
        <View style={style.iconType}>
             <View style={style.icon}>
                 {getIconType(transaction.category)}
@@ -33,11 +33,19 @@ const TransactionItem = ({transaction}: Props) => {
                 <Text style={{color:colors.textColorTransparent, fontSize:getFontSize(width, "min") - 2}}>{capitalize(transaction.note)}</Text>
             </View>
        </View>
-       <View></View>
+       <View>
+            <Text style={{color:colors.primary, fontSize:getFontSize(width, "other") - 2}}>{transaction.amount}</Text>
+            <Text style={{color:colors.textColorTransparent, fontSize:getFontSize(width, "min") - 2}}>05:00PM</Text>
+       </View>
     </View>
   )
 }
 const style = StyleSheet.create({
+    container:{
+        flexDirection:"row",
+        justifyContent:"space-between",
+        padding:10
+    },
     iconType:{
         flexDirection:"row",
         alignItems:"center",
