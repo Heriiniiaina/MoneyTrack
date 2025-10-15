@@ -8,6 +8,7 @@ import { colors } from "@/Constants/Color";
 import { url } from "@/Constants/url";
 import { getFontSize } from "@/Constants/utils";
 import axios from "axios";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
   Dimensions,
@@ -48,6 +49,7 @@ const AddBudgetPage = (props: Props) => {
   const [amount, setAmount] = useState<string>("");
   const [note, setNote] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const router = useRouter()
   const handleSubmit = async () => {
     if (amount.length < 1 || category.length < 1 || note.length < 1)
     {
@@ -77,7 +79,7 @@ const AddBudgetPage = (props: Props) => {
     }
     finally {
       setIsLoading(false);
-      
+      router.replace("/(tabs)/budget")
     }
   };
   return (
