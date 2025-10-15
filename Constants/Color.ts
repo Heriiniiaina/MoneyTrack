@@ -6,7 +6,8 @@ export const colors = {
     tabActive: '#FF5733',
     white: '#c9c9c9',
     grey:"#202020",
-    textColor:"#EDEDED"
+    textColor:"#EDEDED",
+    textColorTransparent:"#EDEDED80"
   };
   
 export const btnColor = {

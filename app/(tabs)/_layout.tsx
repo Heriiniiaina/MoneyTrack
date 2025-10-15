@@ -2,6 +2,7 @@ import { colors } from '@/Constants/Color';
 import { AntDesign, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
+
 const { width, height } = Dimensions.get('window');
 
 
@@ -41,9 +42,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="analystics"
+        name="transaction"
         options={{
-          title: 'Analytics',
+          title: 'Transaction',
           tabBarIcon: ({ color }) => (
             <AntDesign name="bar-chart" size={iconSize} color={color} />
           ),
