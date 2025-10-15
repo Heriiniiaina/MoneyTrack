@@ -24,8 +24,8 @@ const categoryList: SelectedType[] = [
     value: "shopping",
   },
   {
-    name: "health",
-    value: "health",
+    name: "bill",
+    value: "bill",
   },
   {
     name:"others",
@@ -34,6 +34,7 @@ const categoryList: SelectedType[] = [
 ];
 const AddBudgetPage = (props: Props) => {
   const [category, setCategory] = useState<string>("");
+ 
   return (
     <View style={style.container}>
       <View>
@@ -59,7 +60,7 @@ const AddBudgetPage = (props: Props) => {
         </View>
         <View style={{padding:10}}>
           <Text style={{color:colors.textColor, fontSize:getFontSize(width, "other") - 2}}>Category</Text>
-          <SelectedComponents item={categoryList} setSelected={setCategory}/>
+          <SelectedComponents item={categoryList} setSelected={setCategory} selected={category}/>
         </View>
       </View>
     </View>

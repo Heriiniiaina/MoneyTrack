@@ -30,7 +30,7 @@ export const getIconName = (name: string): JSX.Element => {
 const SelectedComponents = ({ item, setSelected, selected }: Props) => {
     const handleClick = (name:string)=>{
         setSelected(name)
-        console.log(selected)
+        console.log("Clicked:", selected);
     }
   return (
     <View style={style.container}>
