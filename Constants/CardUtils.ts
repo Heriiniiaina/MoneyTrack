@@ -9,5 +9,7 @@ export const getCardInfo = (type:string):CardType =>
         return {type:type, color:"#835294", background:"#83529426", name:"shop", title:"Shopping"}
     if (type == "health")
         return {type:type, color:"#2b8b9b", background:"#2b8b9b26", name:"heart", title:"Health"}
+    if (type == "bill")
+        return {type:type, color:"red", background:"#2b8b9b26", name:"heart", title:"Health"}
     return {type:type, color:"#835294", background:"#83529426", name:"car", title:"Transport"}
 }

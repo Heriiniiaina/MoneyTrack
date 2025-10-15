@@ -1,4 +1,5 @@
 import TitleTransctionComponent from '@/components/TitleTransctionComponent'
+import TransactionList from '@/components/TransactionList'
 import { colors } from '@/Constants/Color'
 import { getFontSize } from '@/Constants/utils'
 import { EvilIcons } from '@expo/vector-icons'
@@ -22,6 +23,9 @@ const TransactionPage = (props: Props) => {
         <View style={style.search}>
             <EvilIcons name='search' size={iconSize} style={style.icon}/>
             <TextInput style={style.textInput} placeholder='Search transaction' placeholderTextColor={colors.textColorTransparent}/>
+        </View>
+        <View>
+            <TransactionList/>
         </View>
     </View>
         </ScrollView>

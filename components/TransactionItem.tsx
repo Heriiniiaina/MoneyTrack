@@ -1,0 +1,55 @@
+import { getCardInfo } from '@/Constants/CardUtils'
+import { colors } from '@/Constants/Color'
+import { CardType, TransactionType } from '@/Constants/type'
+import { capitalize, getFontSize } from '@/Constants/utils'
+import { AntDesign, FontAwesome } from '@expo/vector-icons'
+import React from 'react'
+import { Dimensions, StyleSheet, Text, View } from 'react-native'
+
+type Props = {
+    transaction:TransactionType
+}
+const {width, height} = Dimensions.get("window")
+const iconSize = width < 400 ? width * 0.04 : width * 0.05
+export const getIconType = (category:string)=>{
+    const type:CardType = getCardInfo(category)
+    if (category == "health")
+        return <FontAwesome name='heartbeat' size={iconSize} style={{color:type.color}}/>
+    if (category == "bill")
+       return <FontAwesome name="money" size={iconSize} style={{color:type.color}} />
+    if (category == "shopping")
+        return <AntDesign name="shop" size={iconSize} style={{color:type.color}} />
+    return <AntDesign name="heart" size={iconSize} style={{color:type.color}} />;
+}  
+const TransactionItem = ({transaction}: Props) => {
+  return (
+    <View>
+       <View style={style.iconType}>
+            <View style={style.icon}>
+                {getIconType(transaction.category)}
+            </View>
+            <View>
+                <Text style={{color:colors.textColor, fontSize:getFontSize(width, "other") - 2}}>{capitalize(transaction.category)}</Text>
+                <Text style={{color:colors.textColorTransparent, fontSize:getFontSize(width, "min") - 2}}>{capitalize(transaction.note)}</Text>
+            </View>
+       </View>
+       <View></View>
+    </View>
+  )
+}
+const style = StyleSheet.create({
+    iconType:{
+        flexDirection:"row",
+        alignItems:"center",
+        gap:10
+    },
+    icon:{
+        height:iconSize + 20,
+        width:iconSize + 20,
+        backgroundColor:colors.grey,
+        justifyContent:"center",
+        alignItems:"center",
+        borderRadius:10
+    }
+})
+export default TransactionItem

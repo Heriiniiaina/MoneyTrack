@@ -13,6 +13,8 @@ const { width } = Dimensions.get("window");
 let iconSize = width * 0.061;
 if (width < 400) iconSize = width * 0.055;
 
+
+
 const TransactioItem = ({ type, note }: Props) => {
   const color = type == "income" ? colors.primary : "red";
   return (
