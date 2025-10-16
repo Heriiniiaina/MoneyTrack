@@ -11,7 +11,7 @@ type Props = {
 };
 const {width} = Dimensions.get("window")
 
-const iconSize = width < 400 ? width * 0.06 : 0.07
+const iconSize = width < 400 ? width * 0.06 : width * 0.07
 
 const BudgetView = ({ card, progress}: Props) => {
   return (

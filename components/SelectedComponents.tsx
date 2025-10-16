@@ -16,7 +16,7 @@ type Props = {
   selected:string
  
 };
-const iconSize = width < 400 ? width * 0.03 : 0.05;
+const iconSize = width < 400 ? width * 0.05 : width * 0.06;
 export const getIconName = (name: string): JSX.Element => {
   if (name == "health")
     return <FontAwesome name="heartbeat" size={iconSize} style={style.icon} />;
@@ -57,8 +57,8 @@ const style = StyleSheet.create({
     padding:10
   },
   iconContain: {
-    height: iconSize + 30,
-    width: iconSize + 30,
+    height: iconSize + 40,
+    width: iconSize + 40,
     borderWidth: 1,
     justifyContent:"center",
     alignItems:"center",

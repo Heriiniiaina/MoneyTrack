@@ -1,3 +1,4 @@
+import NewExpense from '@/components/NewExpense'
 import SelectedType from '@/components/SelectedType'
 import TitleTransctionComponent from '@/components/TitleTransctionComponent'
 import { colors } from '@/Constants/Color'
@@ -15,6 +16,9 @@ const AddTransactionPage = (props: Props) => {
         <TitleTransctionComponent route={"/(tabs)"} text='Add transaction' width={width}  fontSize={getFontSize(width, "min") + 4}/>
         <View>
         <SelectedType setType={setType} type={type}/>
+        </View>
+        <View>
+            <NewExpense/>
         </View>
     </View>
   )

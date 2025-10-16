@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
       marginVertical: 20,
       justifyContent:"center",
       alignItems:"center",
-      width:width/2,
+      width:(width/2) + 10,
       marginHorizontal:"auto"
     },
     button: {
