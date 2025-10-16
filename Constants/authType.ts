@@ -5,7 +5,8 @@ export type USER = {
 }
 export type AUTHUSER = {
     token:string | null,
-    isAuthenticiated:boolean
+    isAuthenticiated:boolean,
+    user:USER | null
 }
 export type RootState = {
     auth:AUTHUSER,

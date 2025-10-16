@@ -3,7 +3,8 @@ import { AuthActionType } from './../../Constants/storeType';
 
 const initialiseState:AUTHUSER = {
      token:null,
-     isAuthenticiated:false
+     isAuthenticiated:false,
+     user:null
 }
 
 export const authReducer = (state = initialiseState, action:AuthActionType):AUTHUSER =>{
