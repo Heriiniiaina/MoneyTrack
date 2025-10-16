@@ -8,9 +8,11 @@ import { Dimensions, StyleSheet, View } from 'react-native'
 
 type Props = {}
 
-const {width} = Dimensions.get("window")
+const {width, height} = Dimensions.get("window")
 const AddTransactionPage = (props: Props) => {
   const [type, setType] = useState<string>("income")
+  const [isLoading, setIsLoading] = useState(false)
+
   return (
     <View style={style.container}>
         <TitleTransctionComponent route={"/(tabs)"} text='Add transaction' width={width}  fontSize={getFontSize(width, "min") + 4}/>
@@ -20,6 +22,7 @@ const AddTransactionPage = (props: Props) => {
         <View>
             <NewExpense/>
         </View>
+       
     </View>
   )
 }
@@ -27,7 +30,9 @@ const AddTransactionPage = (props: Props) => {
 const style = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:colors.background
-    }
+        backgroundColor:colors.background,
+    },
+  
+  
 })
 export default AddTransactionPage
