@@ -1,7 +1,9 @@
 import { colors } from '@/Constants/Color';
+import { logOut } from '@/store/slices/authSlice';
 import { AntDesign, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { Tabs, useRouter } from 'expo-router';
 import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useDispatch } from 'react-redux';
 
 const { width, height } = Dimensions.get('window');
 
@@ -23,6 +25,7 @@ if (width <= 400)
 
 export default function TabLayout() {
   const router = useRouter()
+  const dispatch = useDispatch()
   return (
     <Tabs
       screenOptions={{
@@ -58,7 +61,7 @@ export default function TabLayout() {
           title: '',
           tabBarIcon: () => (
             <View style={style.center}>
-              <TouchableOpacity style={style.card} onPress={()=>{router.replace("/transaction/addTransaction")}}>
+              <TouchableOpacity style={style.card} onPress={()=>{dispatch(logOut())}}>
                 <Ionicons name="add" size={iconSizeCenter} color={"#fff"} />
               </TouchableOpacity>
             </View>

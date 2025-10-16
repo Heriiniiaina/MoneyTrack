@@ -5,7 +5,6 @@ import RecentTransaction from '@/components/RecentTransaction'
 import { colors } from '@/Constants/Color'
 import React from 'react'
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
-
 type Props = {}
 const { height } = Dimensions.get('window')
 const TAB_BAR_HEIGHT = height * 0.11
