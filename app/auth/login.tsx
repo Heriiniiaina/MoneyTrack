@@ -1,18 +1,23 @@
 import Loading from "@/components/Loading";
 import BudgetAuraTitle from "@/components/Logo";
 import { showToast } from "@/components/ShowToast";
+import { USER } from "@/Constants/authType";
 import { colors } from "@/Constants/Color";
+import { setCredentials } from "@/store/slices/authSlice";
 import axios from "axios";
 import { useRouter } from "expo-router";
+import { jwtDecode } from 'jwt-decode';
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { useDispatch } from "react-redux";
 type Props = {};
 
 const login = (props: Props) => {
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const dispatch = useDispatch()
     const router = useRouter() 
   const handleSubmit = async ()=>{
     if (email.length < 1 || password.length < 1)
@@ -22,17 +27,19 @@ const login = (props: Props) => {
     }
     setIsLoading(true)
     try {
-      const res = await axios.post("http://192.168.100.216:8000/MoneyTrack/auth/login", {email, password})
+      const res = await axios.post("http://192.168.42.216:8000/MoneyTrack/auth/login", {email, password})
       showToast(res.data.message)
-      router.replace("/(tabs)")
+      const userDecoded:USER = jwtDecode(res.data.token) as USER
+      dispatch(setCredentials({token:res.data.token, user:userDecoded}))
+      console.log(userDecoded)
     } catch (error:any) {
       showToast(error.response.data.message)
       console.log(error.response.data)
     }
     finally{
-      setTimeout(()=>{
+     
         setIsLoading(false)
-      }, 1000)
+      
     }
   }
   return (
