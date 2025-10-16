@@ -5,19 +5,25 @@ import TitleTransctionComponent from '@/components/TitleTransctionComponent'
 import { colors } from '@/Constants/Color'
 import { getFontSize } from '@/Constants/utils'
 import React, { useState } from 'react'
-import { Dimensions, StyleSheet, View } from 'react-native'
+import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
 
 type Props = {}
 
 
 
 const {width, height} = Dimensions.get("window")
+const TAB_BAR_HEIGHT = height * 0.11;
 const AddTransactionPage = (props: Props) => {
   const [type, setType] = useState<string>("income")
   const [isLoading, setIsLoading] = useState(false)
 
   return (
-    <View style={style.container}>
+     <ScrollView
+          style={style.container}
+          contentContainerStyle={{ paddingBottom: TAB_BAR_HEIGHT + 20 }}
+          showsVerticalScrollIndicator={true}
+        >
+            <View style={style.container}>
         <TitleTransctionComponent route={"/(tabs)"} text='Add transaction' width={width}  fontSize={getFontSize(width, "min") + 4}/>
         <View>
         <SelectedType setType={setType} type={type}/>
@@ -27,6 +33,8 @@ const AddTransactionPage = (props: Props) => {
         </View>
        
     </View>
+        </ScrollView>
+    
   )
 }
 

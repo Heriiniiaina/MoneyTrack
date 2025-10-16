@@ -19,25 +19,26 @@ import { showToast } from "./ShowToast";
 type Props = {};
 const categoryList: SelectedType[] = [
   {
-    name: "health",
-    value: "health",
+    name: "salary",
+    value: "salary",
   },
   {
-    name: "transport",
-    value: "transport",
+    name: "freelance",
+    value: "freelance",
   },
   {
-    name: "shopping",
-    value: "shopping",
+    name: "business",
+    value: "business",
   },
   {
-    name: "bill",
-    value: "bill",
+    name: "rental",
+    value: "rental",
   },
   {
-    name: "others",
-    value: "others",
+    name: "other",
+    value: "other",
   },
+  
 ];
 const { width, height } = Dimensions.get("window");
 const NewIncome = (props: Props) => {

@@ -22,7 +22,7 @@ import {
 type Props = {};
 
 const { width, height } = Dimensions.get("window");
-export const categoryList: SelectedType[] = [
+const categoryList: SelectedType[] = [
   {
     name: "health",
     value: "health",

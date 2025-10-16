@@ -35,6 +35,23 @@ const categoryList: SelectedType[] = [
     value: "bill",
   },
   {
+    name:"rent",
+    value:"rent"
+  },
+  
+  {
+    name: "food",
+    value: "food",
+  },
+  {
+    name: "education",
+    value: "education",
+  },
+  {
+    name: "travel",
+    value: "travel",
+  },
+  {
     name: "others",
     value: "others",
   },

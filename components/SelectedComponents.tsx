@@ -1,6 +1,6 @@
 import { colors } from "@/Constants/Color";
 import { capitalize, getFontSize } from "@/Constants/utils";
-import { AntDesign, FontAwesome } from "@expo/vector-icons";
+import { AntDesign, FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import React, { JSX, SetStateAction } from "react";
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -24,7 +24,27 @@ export const getIconName = (name: string): JSX.Element => {
     return <AntDesign name="shop" size={iconSize} style={style.icon} />;
   if (name == "bill")
     return <FontAwesome name="money" size={iconSize} style={style.icon} />;
-  return <AntDesign name="heart" size={iconSize} style={style.icon} />;
+  if (name == "freelance")
+    return <FontAwesome5 name="handshake" size={iconSize} style={style.icon} />;
+  if (name == "business")
+    return <FontAwesome name="building" size={iconSize} style={style.icon} />;
+  if (name == "rent")
+    return <FontAwesome5 name="home" size={iconSize} style={style.icon} />;
+  if (name == "rental")
+    return <FontAwesome5 name="home" size={iconSize} style={style.icon} />;
+  if (name == "food")
+    return <FontAwesome5 name="utensils" size={iconSize} style={style.icon} />;
+  if (name == "education")
+    return <FontAwesome5 name="graduation-cap" size={iconSize} style={style.icon} />;
+  if (name == "travel")
+    return <FontAwesome5 name="plane" size={iconSize} style={style.icon} />;
+  if (name == "transport")
+    return <FontAwesome5 name="car" size={iconSize} style={style.icon} />;
+  if (name == "debt")
+    return <FontAwesome5 name="credit-card" size={iconSize} style={style.icon} />;
+  if (name == "salary")
+    return <AntDesign name="dollar" size={iconSize} style={style.icon} />;
+  return <AntDesign name="ellipsis" size={iconSize} style={style.icon} />;
 };
 
 const SelectedComponents = ({ item, setSelected, selected }: Props) => {
