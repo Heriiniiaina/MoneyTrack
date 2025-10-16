@@ -5,12 +5,12 @@ import axios from "axios";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
+    Dimensions,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
 } from "react-native";
 import Loading from "./Loading";
 import SelectedComponents, { SelectedType } from "./SelectedComponents";
@@ -40,7 +40,7 @@ const categoryList: SelectedType[] = [
   },
 ];
 const { width, height } = Dimensions.get("window");
-const NewExpense = (props: Props) => {
+const NewIncome = (props: Props) => {
   const [category, setCategory] = useState("");
   const [note, setNote] = useState<string>("");
   const [amount, setAmount] = useState("");
@@ -137,7 +137,7 @@ const NewExpense = (props: Props) => {
               fontSize: getFontSize(width, "max"),
             }}
           >
-            Add Expense
+            Add Income
           </Text>
         )}
       </TouchableOpacity>
@@ -173,4 +173,4 @@ const style = StyleSheet.create({
     borderRadius: 10,
   },
 });
-export default NewExpense;
+export default NewIncome

@@ -1,4 +1,5 @@
 import NewExpense from '@/components/NewExpense'
+import NewIncome from '@/components/NewIncome'
 import SelectedType from '@/components/SelectedType'
 import TitleTransctionComponent from '@/components/TitleTransctionComponent'
 import { colors } from '@/Constants/Color'
@@ -20,7 +21,7 @@ const AddTransactionPage = (props: Props) => {
         <SelectedType setType={setType} type={type}/>
         </View>
         <View>
-            <NewExpense/>
+           {type == "expense" ?  <NewExpense/> : <NewIncome/>}
         </View>
        
     </View>
