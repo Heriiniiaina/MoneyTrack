@@ -53,10 +53,11 @@ const NewIncome = (props: Props) => {
     }
     setIsLoading(true);
     try {
-      const res = await axios.post(`${url}/budget/add`, {
+      const res = await axios.post(`${url}/transaction/add`, {
         note,
         category,
         amount,
+        type:"income",
         userId: "68e7928aa6644f6bc8746bc9",
       });
       showToast(res.data.message);
@@ -88,7 +89,7 @@ const NewIncome = (props: Props) => {
         >
           Amount
         </Text>
-        <TextInput style={style.textInput} />
+        <TextInput style={style.textInput} onChangeText={value=>setAmount(value)}/>
       </View>
       <View style={{ gap: 10, padding: 10 }}>
         <Text

@@ -9,6 +9,8 @@ import { Dimensions, StyleSheet, View } from 'react-native'
 
 type Props = {}
 
+
+
 const {width, height} = Dimensions.get("window")
 const AddTransactionPage = (props: Props) => {
   const [type, setType] = useState<string>("income")
