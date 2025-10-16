@@ -13,7 +13,7 @@ import {
 } from 'redux-persist';
 
 import authReducer from './slices/authSlice';
-
+import transactionReducer from "./slices/transactionSlice";
 
 const persistConfig = {
   key: 'root', 
@@ -23,6 +23,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  transactions:transactionReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
