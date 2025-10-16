@@ -4,7 +4,7 @@ export type USER = {
     email:string
 }
 export type AUTHUSER = {
-    token:string,
+    token:string | null,
     isAuthenticiated:boolean
 }
 export type RootState = {
