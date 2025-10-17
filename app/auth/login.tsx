@@ -50,7 +50,7 @@ const login = (props: Props) => {
         <View style={style.page}>
           <View style={style.title}>
             <BudgetAuraTitle/>
-            <Text style={{fontSize:30, color:colors.textColor}}>Welcome back!</Text>
+            <Text style={{fontSize: height * 0.035, color:colors.textColor}}>Welcome back!</Text>
           </View>
           <View style={style.container_input}>
             <View style={style.input}>
@@ -64,13 +64,13 @@ const login = (props: Props) => {
           </View>
           <View style={{alignItems:"flex-end"}}>
              <TouchableOpacity>
-                <Text style={{color:colors.primary,fontSize:15}}>Forgot password ?</Text>
+                <Text style={{color:colors.primary,fontSize:height * 0.02}}>Forgot password ?</Text>
              </TouchableOpacity>
           </View>
           <View style={style.btn}>
             {
               isLoading ? <Loading/> : <TouchableOpacity onPress={handleSubmit}>
-              <Text style={{color:colors.textColor, fontSize:20}}>Sign In</Text>
+              <Text style={{color:colors.textColor, fontSize:height * 0.02}}>Sign In</Text>
           </TouchableOpacity>
             }
           </View>
@@ -103,21 +103,21 @@ const style = StyleSheet.create({
     gap:height * 0.02
   },
   container_input:{
-    gap:15
+    gap: height * 0.02,
   },
   input: {
     justifyContent: "center",
     flexDirection: "column",
     width: '100%',
-    gap:10
+    gap: height * 0.015,
   },
   input_label: {
     color: colors.textColor,
-    fontSize:20
+    fontSize: height * 0.02,
   },
   text_input: {
     backgroundColor: colors.background,
-    height: 60,
+    fontSize:height * 0.015,
     width: '100%', 
     borderColor:colors.grey,
     borderWidth:2,
@@ -126,7 +126,7 @@ const style = StyleSheet.create({
   },
   btn:{
     backgroundColor:colors.primary,
-    height:50,
+    height: height * 0.05,
     borderRadius:20,
     alignItems:"center",
     justifyContent:"center"
@@ -135,10 +135,10 @@ const style = StyleSheet.create({
     alignItems:"center",
     justifyContent:"center",
     flexDirection:"row",
-    gap:10
+    gap: height * 0.017,
   },
   signup_btn_text:{
-    fontSize:15,
+    fontSize: height * 0.016,
     color:colors.white
   }
 });

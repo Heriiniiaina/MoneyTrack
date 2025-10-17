@@ -138,7 +138,7 @@ const Register = (props: Props) => {
           <View style={style.btn}>
             {
                 isLoading ? <Loading/> : <TouchableOpacity onPress={handleSubmit}>
-                <Text style={{ color: colors.textColor, fontSize: 20 }}>
+                <Text style={{ color: colors.textColor, fontSize: height * 0.02 }}>
                   Create account
                 </Text>
               </TouchableOpacity> 
