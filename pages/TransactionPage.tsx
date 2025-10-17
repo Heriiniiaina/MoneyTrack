@@ -2,11 +2,9 @@ import TitleTransctionComponent from '@/components/TitleTransctionComponent'
 import TransactionList from '@/components/TransactionList'
 import { colors } from '@/Constants/Color'
 import { getFontSize } from '@/Constants/utils'
-import { RootState } from '@/store/store'
 import { EvilIcons } from '@expo/vector-icons'
 import React from 'react'
 import { Dimensions, ScrollView, StyleSheet, TextInput, View } from 'react-native'
-import { useSelector } from 'react-redux'
 
 type Props = {}
 
@@ -14,8 +12,8 @@ const {width, height} = Dimensions.get("window")
 const TAB_BAR_HEIGHT = height * 0.11;
 const iconSize = width < 400 ? width* 0.06 : width * 0.07
 const TransactionPage = (props: Props) => {
-    const transaction = useSelector((state:RootState)=>state.transaction.transaction)
-    console.log(transaction)
+   
+   
   return (
      <ScrollView
           style={style.container}

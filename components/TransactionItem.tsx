@@ -5,6 +5,7 @@ import { capitalize, getFontSize } from '@/Constants/utils'
 import { AntDesign, FontAwesome } from '@expo/vector-icons'
 import React from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
+import { getIconName } from './SelectedComponents'
 
 type Props = {
     transaction:TransactionType
@@ -26,7 +27,7 @@ const TransactionItem = ({transaction}: Props) => {
     <View style={style.container}>
        <View style={style.iconType}>
             <View style={style.icon}>
-                {getIconType(transaction.category)}
+                {getIconName(transaction.category)}
             </View>
             <View>
                 <Text style={{color:colors.textColor, fontSize:getFontSize(width, "other") - 2}}>{capitalize(transaction.category)}</Text>

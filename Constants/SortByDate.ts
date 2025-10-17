@@ -8,7 +8,7 @@ export type GroupedSection = {
 };
 
 export const groupDataByDate = (data: TransactionType[]): GroupedSection[] => {
-  const sorted = data.sort((b, a) => new Date(b.date).getTime() - new Date(a.date).getTime()).reverse();
+  const sorted = [...data].sort((b, a) => new Date(b.date).getTime() - new Date(a.date).getTime()).reverse();
 
   const grouped: { [key: string]: TransactionType[] } = {};
 
