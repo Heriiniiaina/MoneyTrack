@@ -9,11 +9,12 @@ import axios from "axios";
 import { useRouter } from "expo-router";
 import { jwtDecode } from 'jwt-decode';
 import React, { useState } from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch } from "react-redux";
 type Props = {};
 
+const {width, height} = Dimensions.get("window")
 const login = (props: Props) => {
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
@@ -99,7 +100,7 @@ const style = StyleSheet.create({
     color: "white",
     padding: 10,
     flexDirection: "column",
-    gap:15
+    gap:height * 0.02
   },
   container_input:{
     gap:15

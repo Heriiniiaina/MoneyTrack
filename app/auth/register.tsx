@@ -8,12 +8,14 @@ import axios from "axios";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
+  Dimensions,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
+
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 type Props = {};
@@ -23,7 +25,7 @@ type FormType = {
     password:string
 }
 
-
+const {width, height} = Dimensions.get("window")
 const Register = (props: Props) => {
   const [isLoading, setIsLoading] = useState<boolean>(false) 
   const [confirmPass, setConfirmPass] = useState<string>("");
@@ -86,7 +88,7 @@ const Register = (props: Props) => {
         <View style={style.page}>
           <View style={style.title}>
             <BudgetAuraTitle />
-            <Text style={{ fontSize: 30, color: colors.textColor }}>
+            <Text style={{ fontSize: height * 0.035, color: colors.textColor }}>
               Welcome!
             </Text>
           </View>
@@ -163,6 +165,7 @@ const Register = (props: Props) => {
 const style = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:colors.background
   },
   title: {
     alignItems: "center",
@@ -174,33 +177,34 @@ const style = StyleSheet.create({
     color: "white",
     padding: 10,
     flexDirection: "column",
-    gap: 15,
+    gap: height * 0.02,
   },
   container_input: {
-    gap: 15,
+    gap: height * 0.02,
   },
   input: {
     justifyContent: "center",
     flexDirection: "column",
     width: "100%",
-    gap: 10,
+    gap: height * 0.015,
   },
   input_label: {
     color: colors.textColor,
-    fontSize: 20,
+    fontSize: height * 0.02,
   },
   text_input: {
     backgroundColor: colors.background,
-    height: 60,
+    height: height * 0.055,
     width: "100%",
     borderColor: colors.grey,
     borderWidth: 2,
     borderRadius: 10,
     color: colors.textColor,
+    fontSize:height * 0.015
   },
   btn: {
     backgroundColor: colors.primary,
-    height: 50,
+    height: height * 0.05,
     borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
@@ -209,10 +213,10 @@ const style = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
-    gap: 10,
+    gap: height * 0.015,
   },
   signup_btn_text: {
-    fontSize: 15,
+    fontSize: height * 0.016,
     color: colors.white,
   },
 });

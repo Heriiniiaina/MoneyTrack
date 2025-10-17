@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
 
+
+const {height} = Dimensions.get("window")
 const BudgetAuraTitle = () => {
   return (
     <View style={styles.container}>
@@ -19,7 +21,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 36,
+    fontSize: height * 0.04,
     fontFamily: 'Raleway_800ExtraBold',
     letterSpacing: 2,
   },
