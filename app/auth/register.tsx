@@ -2,16 +2,17 @@ import Loading from "@/components/Loading";
 import BudgetAuraTitle from "@/components/Logo";
 import { showToast } from "@/components/ShowToast";
 import { colors } from "@/Constants/Color";
+import { url } from "@/Constants/url";
 import { checkEmail, isValidPassword } from "@/Constants/Validator";
 import axios from "axios";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
@@ -64,7 +65,7 @@ const Register = (props: Props) => {
         return
     setIsLoading(true)
     try {
-        const res = await axios.post("http://192.168.100.216:8000/MoneyTrack/auth/register", formInput)
+        const res = await axios.post(`${url}/auth/register`, formInput)
         console.log(res.data)
         showToast("Register successfull")
         router.replace("/auth/login")

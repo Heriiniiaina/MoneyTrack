@@ -3,6 +3,7 @@ import BudgetAuraTitle from "@/components/Logo";
 import { showToast } from "@/components/ShowToast";
 import { USER } from "@/Constants/authType";
 import { colors } from "@/Constants/Color";
+import { url } from "@/Constants/url";
 import { setCredentials } from "@/store/slices/authSlice";
 import axios from "axios";
 import { useRouter } from "expo-router";
@@ -27,7 +28,7 @@ const login = (props: Props) => {
     }
     setIsLoading(true)
     try {
-      const res = await axios.post("http://192.168.42.216:8000/MoneyTrack/auth/login", {email, password})
+      const res = await axios.post(`${url}/auth/login`, {email, password})
       showToast(res.data.message)
       const userDecoded:USER = jwtDecode(res.data.token) as USER
       dispatch(setCredentials({token:res.data.token, user:userDecoded}))

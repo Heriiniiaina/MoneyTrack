@@ -7,6 +7,7 @@ import TitleTransctionComponent from "@/components/TitleTransctionComponent";
 import { colors } from "@/Constants/Color";
 import { url } from "@/Constants/url";
 import { getFontSize } from "@/Constants/utils";
+import { useUserId } from "@/services/userServices";
 import axios from "axios";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
@@ -50,7 +51,9 @@ const AddBudgetPage = (props: Props) => {
   const [note, setNote] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter()
+  const id = useUserId()
   const handleSubmit = async () => {
+    console.log(id)
     if (amount.length < 1 || category.length < 1 || note.length < 1)
     {
       showToast("Please provide");
@@ -60,7 +63,7 @@ const AddBudgetPage = (props: Props) => {
     try {
       const res = await axios.post(
         `${url}/budget/add`,
-        { note, category, amount, userId: "68e7928aa6644f6bc8746bc9" }
+        { note, category, amount, userId: id }
       );
       showToast(res.data.message);
     }  

@@ -1,16 +1,17 @@
 import { colors } from "@/Constants/Color";
 import { url } from "@/Constants/url";
 import { getFontSize } from "@/Constants/utils";
+import { useUserId } from "@/services/userServices";
 import axios from "axios";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-    Dimensions,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  Dimensions,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import Loading from "./Loading";
 import SelectedComponents, { SelectedType } from "./SelectedComponents";
@@ -47,19 +48,22 @@ const NewIncome = (props: Props) => {
   const [amount, setAmount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const id = useUserId()
   const handleSubmit = async () => {
+    console.log(id)
     if (amount.length < 1 || category.length < 1 || note.length < 1) {
       showToast("Please provide");
       return;
     }
     setIsLoading(true);
+    console.log(id)
     try {
       const res = await axios.post(`${url}/transaction/add`, {
         note,
         category,
         amount,
         type:"income",
-        userId: "68e7928aa6644f6bc8746bc9",
+        userId: id,
       });
       showToast(res.data.message);
     } catch (error: any) {

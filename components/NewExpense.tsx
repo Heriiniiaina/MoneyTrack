@@ -1,6 +1,7 @@
 import { colors } from "@/Constants/Color";
 import { url } from "@/Constants/url";
 import { getFontSize } from "@/Constants/utils";
+import { useUserId } from "@/services/userServices";
 import axios from "axios";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
@@ -63,6 +64,7 @@ const NewExpense = (props: Props) => {
   const [amount, setAmount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const id = useUserId()
   const handleSubmit = async () => {
     if (amount.length < 1 || category.length < 1 || note.length < 1) {
       showToast("Please provide");
@@ -75,7 +77,7 @@ const NewExpense = (props: Props) => {
         category,
         amount,
         type:"expense",
-        userId: "68e7928aa6644f6bc8746bc9",
+        userId: id,
       });
       showToast(res.data.message);
     } catch (error: any) {

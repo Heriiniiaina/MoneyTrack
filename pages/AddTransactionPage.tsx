@@ -4,6 +4,7 @@ import SelectedType from '@/components/SelectedType'
 import TitleTransctionComponent from '@/components/TitleTransctionComponent'
 import { colors } from '@/Constants/Color'
 import { getFontSize } from '@/Constants/utils'
+import { useUserId } from '@/services/userServices'
 import React, { useState } from 'react'
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
 
@@ -16,7 +17,8 @@ const TAB_BAR_HEIGHT = height * 0.11;
 const AddTransactionPage = (props: Props) => {
   const [type, setType] = useState<string>("income")
   const [isLoading, setIsLoading] = useState(false)
-
+    const id = useUserId()
+    console.log(id)
   return (
      <ScrollView
           style={style.container}
