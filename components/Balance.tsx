@@ -1,14 +1,18 @@
 import { colors } from "@/Constants/Color";
 import { getFontSize } from "@/Constants/utils";
+import { currentMonth } from "@/services/dateServices";
+import { RootState } from "@/store/store";
 import { Feather } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
+import { useSelector } from "react-redux";
 
 type Props = {};
 const {width, height} = Dimensions.get("window")
 const TAB_BAR_HEIGHT = height * 0.11;
 const Balance = (props: Props) => {
+  const user = useSelector((state:RootState)=>state.auth.user)
   return (
     
     <LinearGradient
@@ -24,12 +28,12 @@ const Balance = (props: Props) => {
               Total balance
             </Text>
             <Text style={{ color: colors.textColor, fontSize: getFontSize(width, "max") }}>
-              Ar. 390000
+              Ar. {user?.balance}
             </Text>
           </View>
           <View>
             <Text style={[{ color: colors.textColor, fontSize:getFontSize(width, "other") }, style.date]}>
-              Sep 2025
+              {currentMonth}
             </Text>
           </View>
         </View>
@@ -44,7 +48,7 @@ const Balance = (props: Props) => {
             </View>
             <View>
               <Text style={[{ color: colors.textColor, fontSize:getFontSize(width, "min") }]}>Income</Text>
-              <Text style={[{ color: colors.textColor, fontSize:getFontSize(width, "max") }]}>Ar. 10000</Text>
+              <Text style={[{ color: colors.textColor, fontSize:getFontSize(width, "max") }]}>Ar. {user?.income}</Text>
             </View>
           </View>
           <View style={style.transaction}>
@@ -57,7 +61,7 @@ const Balance = (props: Props) => {
             </View>
             <View>
               <Text style={[{ color: colors.textColor, fontSize:getFontSize(width, "min") }]}>Expense</Text>
-              <Text style={[{ color: colors.textColor, fontSize:getFontSize(width, "max") }]}>Ar. 10000</Text>
+              <Text style={[{ color: colors.textColor, fontSize:getFontSize(width, "max") }]}>Ar. {user?.expense}</Text>
             </View>
           </View>
         </View>

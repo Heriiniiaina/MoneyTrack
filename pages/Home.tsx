@@ -21,7 +21,7 @@ const Home = (props: Props) => {
   return (
     <ScrollView
     style={style.container}
-    contentContainerStyle={{ paddingBottom: TAB_BAR_HEIGHT + 20 }} // padding pour éviter d'être caché par la tabBar
+    contentContainerStyle={{ paddingBottom: TAB_BAR_HEIGHT + 20 }}
     showsVerticalScrollIndicator={true}
   >
     <View style={style.container}>
