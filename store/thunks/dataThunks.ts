@@ -12,6 +12,8 @@ export const fetchTransaction = createAsyncThunk<
   async (id, { rejectWithValue }) => {
     try {
       const res = await axios.get(`${url}/transaction/get-transaction/${id}`);
+      console.log("eto")
+      console.log(res.data.transactions)
       return res.data.transactions as TransactionType[];
     } catch (error: any) {
       return rejectWithValue(error.response?.data || 'Erreur lors du fetch transactions');

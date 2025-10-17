@@ -1,5 +1,6 @@
 import { colors } from "@/Constants/Color";
-import { getFontSize } from "@/Constants/utils";
+import { TransactionType } from "@/Constants/type";
+import { capitalize, getFontSize } from "@/Constants/utils";
 import { AntDesign } from "@expo/vector-icons";
 import React from "react";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
@@ -8,6 +9,7 @@ import LineHr from "./LineHr";
 type Props = {
   type: "income" | "expense";
   note?: string;
+  transactions:TransactionType
 };
 const { width } = Dimensions.get("window");
 let iconSize = width * 0.061;
@@ -15,8 +17,9 @@ if (width < 400) iconSize = width * 0.055;
 
 
 
-const TransactioItem = ({ type, note }: Props) => {
-  const color = type == "income" ? colors.primary : "red";
+const TransactioItem = ({ type, note, transactions }: Props) => {
+  console.log(transactions)
+  const color = transactions.type == "income" ? colors.primary : "red";
   return (
     <View>
       <View style={style.container}>
@@ -35,7 +38,7 @@ const TransactioItem = ({ type, note }: Props) => {
                 fontSize: getFontSize(width, "max") - 3,
               }}
             >
-              Salary
+              {capitalize(transactions.category)}
             </Text>
             {note ? (
               <Text
@@ -44,7 +47,7 @@ const TransactioItem = ({ type, note }: Props) => {
                   fontSize: getFontSize(width, "min") - 2,
                 }}
               >
-                {note}
+                {capitalize(transactions.note)}
               </Text>
             ) : null}
           </View>
@@ -53,7 +56,7 @@ const TransactioItem = ({ type, note }: Props) => {
           <Text
             style={{ fontSize: getFontSize(width, "min"), color: color }}
           >
-            {type == "income" ? "+" : "-"} $400
+            {transactions.type == "income" ? "+" : "-"} {transactions.amount}
           </Text>
         </View>
       </View>

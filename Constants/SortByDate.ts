@@ -36,3 +36,8 @@ export const groupDataByDate = (data: TransactionType[]): GroupedSection[] => {
     data: grouped[title],
   }));
 };
+
+export const sortBydate = (data:TransactionType[]):TransactionType[] =>{
+  const sorted = [...data].sort((b, a) => new Date(b.date).getTime() - new Date(a.date).getTime()).reverse();
+  return sorted
+}

@@ -1,5 +1,4 @@
 import { colors } from '@/Constants/Color';
-import { logOut } from '@/store/slices/authSlice';
 import { AntDesign, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { Tabs, useRouter } from 'expo-router';
 import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
@@ -61,7 +60,7 @@ export default function TabLayout() {
           title: '',
           tabBarIcon: () => (
             <View style={style.center}>
-              <TouchableOpacity style={style.card} onPress={()=>{dispatch(logOut())}}>
+              <TouchableOpacity style={style.card} onPress={()=>{router.replace("/transaction/addTransaction")}}>
                 <Ionicons name="add" size={iconSizeCenter} color={"#fff"} />
               </TouchableOpacity>
             </View>

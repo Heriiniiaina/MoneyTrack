@@ -2,6 +2,7 @@ import { colors } from "@/Constants/Color";
 import { url } from "@/Constants/url";
 import { getFontSize } from "@/Constants/utils";
 import { useUserId } from "@/services/userServices";
+import { updateBlance } from "@/store/slices/authSlice";
 import { addTransactions } from "@/store/slices/transactionSlice";
 import axios from "axios";
 import { useRouter } from "expo-router";
@@ -68,6 +69,7 @@ const NewExpense = (props: Props) => {
   const router = useRouter();
   const id = useUserId()
   const dispatch = useDispatch()
+
   const handleSubmit = async () => {
     if (amount.length < 1 || category.length < 1 || note.length < 1) {
       showToast("Please provide");
@@ -86,6 +88,7 @@ const NewExpense = (props: Props) => {
       });
       console.log(res.data)
       dispatch(addTransactions(res.data.transaction))
+      dispatch(updateBlance({type:"expense", value:Number(amount)}))
       showToast(res.data.message);
     } catch (error: any) {
       if (axios.isAxiosError(error)) {

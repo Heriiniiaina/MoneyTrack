@@ -2,6 +2,8 @@ import { colors } from "@/Constants/Color";
 import { url } from "@/Constants/url";
 import { getFontSize } from "@/Constants/utils";
 import { useUserId } from "@/services/userServices";
+import { updateBlance } from "@/store/slices/authSlice";
+import { addTransactions } from "@/store/slices/transactionSlice";
 import axios from "axios";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
@@ -13,6 +15,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useDispatch } from "react-redux";
 import Loading from "./Loading";
 import SelectedComponents, { SelectedType } from "./SelectedComponents";
 import { showToast } from "./ShowToast";
@@ -49,6 +52,7 @@ const NewIncome = (props: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const id = useUserId()
+  const dispatch = useDispatch()
   const handleSubmit = async () => {
     console.log(id)
     if (amount.length < 1 || category.length < 1 || note.length < 1) {
@@ -65,6 +69,8 @@ const NewIncome = (props: Props) => {
         type:"income",
         userId: id,
       });
+      dispatch(addTransactions(res.data.transaction))
+      dispatch(updateBlance({type:"income", value:Number(amount)}))
       showToast(res.data.message);
       console.log(res.data.transaction)
     } catch (error: any) {
