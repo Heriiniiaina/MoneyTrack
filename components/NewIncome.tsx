@@ -66,6 +66,7 @@ const NewIncome = (props: Props) => {
         userId: id,
       });
       showToast(res.data.message);
+      console.log(res.data.transaction)
     } catch (error: any) {
       if (axios.isAxiosError(error)) {
         if (error.response) {

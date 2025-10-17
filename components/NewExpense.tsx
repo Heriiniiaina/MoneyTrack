@@ -2,6 +2,7 @@ import { colors } from "@/Constants/Color";
 import { url } from "@/Constants/url";
 import { getFontSize } from "@/Constants/utils";
 import { useUserId } from "@/services/userServices";
+import { addTransactions } from "@/store/slices/transactionSlice";
 import axios from "axios";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
@@ -13,6 +14,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useDispatch } from "react-redux";
 import Loading from "./Loading";
 import SelectedComponents, { SelectedType } from "./SelectedComponents";
 import { showToast } from "./ShowToast";
@@ -65,9 +67,12 @@ const NewExpense = (props: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const id = useUserId()
+  const dispatch = useDispatch()
   const handleSubmit = async () => {
     if (amount.length < 1 || category.length < 1 || note.length < 1) {
       showToast("Please provide");
+     
+      console.log
       return;
     }
     setIsLoading(true);
@@ -79,6 +84,8 @@ const NewExpense = (props: Props) => {
         type:"expense",
         userId: id,
       });
+      console.log(res.data)
+      dispatch(addTransactions(res.data.transaction))
       showToast(res.data.message);
     } catch (error: any) {
       if (axios.isAxiosError(error)) {
@@ -108,7 +115,7 @@ const NewExpense = (props: Props) => {
         >
           Amount
         </Text>
-        <TextInput style={style.textInput} onChangeText={value=>setAmount(amount)}/>
+        <TextInput style={style.textInput} onChangeText={value=>setAmount(value)}/>
       </View>
       <View style={{ gap: 10, padding: 10 }}>
         <Text
