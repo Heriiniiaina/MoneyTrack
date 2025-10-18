@@ -13,8 +13,8 @@ import {
 } from 'redux-persist';
 
 import authReducer from './slices/authSlice';
+import budgetReducer from "./slices/budgetSlice";
 import transactionReducer from "./slices/transactionSlice";
-
 const persistConfig = {
   key: 'root', 
   storage: AsyncStorage, 
@@ -23,7 +23,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  transaction:transactionReducer
+  transaction:transactionReducer,
+  budget:budgetReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

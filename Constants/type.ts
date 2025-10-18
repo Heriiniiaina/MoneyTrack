@@ -17,3 +17,12 @@ export type TransactionType = {
     note:string,
     date:string
 }
+
+export type BudgetType = {
+    _id:string,
+    user:string,
+    amount:string,
+    category:string,
+    note:string,
+    date:string
+}
