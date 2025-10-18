@@ -18,7 +18,7 @@ if (width < 400) iconSize = width * 0.055;
 
 
 const TransactioItem = ({ type, note, transactions }: Props) => {
-  console.log(transactions)
+  
   const color = transactions.type == "income" ? colors.primary : "red";
   return (
     <View>

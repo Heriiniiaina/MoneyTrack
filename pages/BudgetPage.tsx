@@ -3,14 +3,18 @@ import MyBudgetTitle from "@/components/MyBudgetTitle";
 import TitleTransctionComponent from "@/components/TitleTransctionComponent";
 import { getCardInfo } from "@/Constants/CardUtils";
 import { colors } from "@/Constants/Color";
+import { RootState } from "@/store/store";
 import React from "react";
 import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
+import { useSelector } from "react-redux";
 
 type Props = {};
 
 const { height, width } = Dimensions.get("window");
 const TAB_BAR_HEIGHT = height * 0.11;
 const BudgetPage = (props: Props) => {
+  const budget = useSelector((state:RootState)=>state.budget)
+  console.log(budget)
   return (
     <ScrollView
       style={style.container}

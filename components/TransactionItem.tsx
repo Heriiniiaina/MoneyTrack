@@ -1,7 +1,7 @@
 import { getCardInfo } from '@/Constants/CardUtils'
 import { btnColor, colors } from '@/Constants/Color'
 import { CardType, TransactionType } from '@/Constants/type'
-import { capitalize, getFontSize } from '@/Constants/utils'
+import { capitalize, getFontSize, getTime } from '@/Constants/utils'
 import { AntDesign, FontAwesome } from '@expo/vector-icons'
 import React from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
@@ -36,8 +36,8 @@ const TransactionItem = ({transaction}: Props) => {
             </View>
        </View>
        <View style={{alignItems:"center"}}>
-            <Text style={{color:colors.primary, fontSize:getFontSize(width, "other") - 2}}>{transaction.amount}</Text>
-            <Text style={{color:colors.textColorTransparent, fontSize:getFontSize(width, "min") - 2}}>05:00PM</Text>
+            <Text style={{color:transaction.type == "income" ? colors.primary : "red", fontSize:getFontSize(width, "other") - 2}}>{transaction.amount}</Text>
+            <Text style={{color:colors.textColorTransparent, fontSize:getFontSize(width, "min") - 2}}>{getTime(transaction.date)}</Text>
        </View>
     </View>
   )

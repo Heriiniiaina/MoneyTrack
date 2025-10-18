@@ -15,7 +15,8 @@ export type TransactionType = {
     amount:string,
     category:string,
     note:string,
-    date:string
+    date:string,
+    type:string
 }
 
 export type BudgetType = {

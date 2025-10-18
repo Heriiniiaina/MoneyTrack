@@ -6,7 +6,6 @@ export const getTransaction = async(id:string)=> {
 
     try {
         const res = await axios.get(`${url}/transaction/get-transaction/${id}`)
-        console.log(res)
     } catch (error) {
         
     }
