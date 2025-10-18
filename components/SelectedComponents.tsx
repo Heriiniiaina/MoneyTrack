@@ -1,4 +1,4 @@
-import { colors } from "@/Constants/Color";
+import { btnColor, colors } from "@/Constants/Color";
 import { capitalize, getFontSize } from "@/Constants/utils";
 import { AntDesign, FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import React, { JSX, SetStateAction } from "react";
@@ -17,33 +17,33 @@ type Props = {
  
 };
 const iconSize = width < 400 ? width * 0.05 : width * 0.06;
-export const getIconName = (name: string): JSX.Element => {
+export const getIconName = (name: string, isToColor:boolean): JSX.Element => {
   if (name == "health")
-    return <FontAwesome name="heartbeat" size={iconSize} style={style.icon} />;
+    return <FontAwesome name="heartbeat" size={iconSize} style={[{color: isToColor ? btnColor.transport : colors.textColor}]} />;
   if (name == "shopping")
-    return <AntDesign name="shop" size={iconSize} style={style.icon} />;
+    return <AntDesign name="shop" size={iconSize}  style={[{color: isToColor ? btnColor[name] : colors.textColor}]} />;
   if (name == "bill")
-    return <FontAwesome name="money" size={iconSize} style={style.icon} />;
+    return <FontAwesome name="money" size={iconSize} style={[{color: isToColor ? btnColor[name] : colors.textColor}]}/>;
   if (name == "freelance")
-    return <FontAwesome5 name="handshake" size={iconSize} style={style.icon} />;
+    return <FontAwesome5 name="handshake" size={iconSize} style={[{color: isToColor ? btnColor[name] : colors.textColor}]}/>;
   if (name == "business")
-    return <FontAwesome name="building" size={iconSize} style={style.icon} />;
+    return <FontAwesome name="building" size={iconSize} style={[{color: isToColor ? btnColor[name] : colors.textColor}]}/>;
   if (name == "rent")
-    return <FontAwesome5 name="home" size={iconSize} style={style.icon} />;
+    return <FontAwesome5 name="home" size={iconSize} style={[{color: isToColor ? btnColor[name] : colors.textColor}]}/>;
   if (name == "rental")
-    return <FontAwesome5 name="home" size={iconSize} style={style.icon} />;
+    return <FontAwesome5 name="home" size={iconSize} style={[{color: isToColor ? btnColor[name] : colors.textColor}]} />;
   if (name == "food")
-    return <FontAwesome5 name="utensils" size={iconSize} style={style.icon} />;
+    return <FontAwesome5 name="utensils" style={[{color: isToColor ? btnColor[name] : colors.textColor}]}/>;
   if (name == "education")
-    return <FontAwesome5 name="graduation-cap" size={iconSize} style={style.icon} />;
+    return <FontAwesome5 name="graduation-cap" style={[{color: isToColor ? btnColor[name] : colors.textColor}]} />;
   if (name == "travel")
-    return <FontAwesome5 name="plane" size={iconSize} style={style.icon} />;
+    return <FontAwesome5 name="plane" size={iconSize} style={[{color: isToColor ? btnColor[name] : colors.textColor}]}/>;
   if (name == "transport")
-    return <FontAwesome5 name="car" size={iconSize} style={style.icon} />;
+    return <FontAwesome5 name="car" size={iconSize} style={[{color: isToColor ? btnColor[name] : colors.textColor}]}/>;
   if (name == "debt")
-    return <FontAwesome5 name="credit-card" size={iconSize} style={style.icon} />;
+    return <FontAwesome5 name="credit-card" size={iconSize} style={[{color: isToColor ? btnColor[name] : colors.textColor}]}/>;
   if (name == "salary")
-    return <AntDesign name="dollar" size={iconSize} style={style.icon} />;
+    return <AntDesign name="dollar" size={iconSize} style={[{color: isToColor ? btnColor[name] : colors.textColor}]}/>;
   return <AntDesign name="ellipsis" size={iconSize} style={style.icon} />;
 };
 
@@ -59,7 +59,7 @@ const SelectedComponents = ({ item, setSelected, selected }: Props) => {
         return (
             <TouchableOpacity key={index} style={[style.iconContain, {borderColor:isSelected ? colors.primary : colors.textColor}]} onPress={()=>handleClick(it.name)}>
               <View style={{alignItems:"center"}}>
-                {getIconName(it.name)}
+                {getIconName(it.name, false)}
                 <Text style={{fontSize:getFontSize(width, "min")- 2, color:isSelected ? colors.primary : colors.textColor}}>{capitalize(it.name)}</Text>
               </View>
             </TouchableOpacity>

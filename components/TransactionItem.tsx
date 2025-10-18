@@ -1,5 +1,5 @@
 import { getCardInfo } from '@/Constants/CardUtils'
-import { colors } from '@/Constants/Color'
+import { btnColor, colors } from '@/Constants/Color'
 import { CardType, TransactionType } from '@/Constants/type'
 import { capitalize, getFontSize } from '@/Constants/utils'
 import { AntDesign, FontAwesome } from '@expo/vector-icons'
@@ -23,11 +23,12 @@ export const getIconType = (category:string)=>{
     return <AntDesign name="heart" size={iconSize} style={{color:type.color}} />;
 }  
 const TransactionItem = ({transaction}: Props) => {
+    const backColor = `back${capitalize(transaction.category)}`
   return (
     <View style={style.container}>
        <View style={style.iconType}>
-            <View style={style.icon}>
-                {getIconName(transaction.category)}
+            <View style={[style.icon, {backgroundColor:btnColor[backColor]}]}>
+                {getIconName(transaction.category, true)}
             </View>
             <View>
                 <Text style={{color:colors.textColor, fontSize:getFontSize(width, "other") - 2}}>{capitalize(transaction.category)}</Text>

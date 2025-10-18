@@ -5,7 +5,7 @@ import RecentTransaction from '@/components/RecentTransaction'
 import { colors } from '@/Constants/Color'
 import { useUserId } from '@/services/userServices'
 import { AppDispatch } from '@/store/store'
-import { fetchTransaction } from '@/store/thunks/dataThunks'
+import { fetchBudget, fetchTransaction } from '@/store/thunks/dataThunks'
 import React, { useEffect } from 'react'
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
 import { useDispatch } from 'react-redux'
@@ -17,6 +17,7 @@ const Home = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>()
   useEffect(()=>{
     dispatch(fetchTransaction(id))
+    dispatch(fetchBudget(id))
   }, [dispatch,id])
   return (
     <ScrollView
