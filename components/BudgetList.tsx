@@ -1,11 +1,17 @@
+import { sortBydate } from '@/Constants/SortByDate'
+import { BudgetType } from '@/Constants/type'
+import { RootState } from '@/store/store'
 import React from 'react'
 import { Dimensions, StyleSheet, View } from 'react-native'
+import { useSelector } from 'react-redux'
 import BudgetItem from './BudgetItem'
 import LineHr from './LineHr'
 
 type Props = {}
 const {width, height} = Dimensions.get("window")
 const BudgetList = (props: Props) => {
+ const budget:BudgetType[] = useSelector((state:RootState)=>state.budget.budget)
+ const budgetList:BudgetType[] = sortBydate(budget)
   return (
     <View style={style.container}>
         <BudgetItem/>

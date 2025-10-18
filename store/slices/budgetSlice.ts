@@ -19,7 +19,13 @@ export const budgetSlice = createSlice({
             state.budget = action.payload
         },
         addBudgets:(state, action: PayloadAction<BudgetType> )=>{
-            state.budget.push(action.payload)
+
+            const updated = action.payload
+            const index = state.budget.findIndex((b)=>b.category == updated.category)
+            if (index != -1)
+                state.budget[index] = action.payload
+            else
+                state.budget.push(action.payload)
         }
     },
     extraReducers:(builder)=>{

@@ -8,6 +8,7 @@ import { colors } from "@/Constants/Color";
 import { url } from "@/Constants/url";
 import { getFontSize } from "@/Constants/utils";
 import { useUserId } from "@/services/userServices";
+import { addBudgets } from "@/store/slices/budgetSlice";
 import axios from "axios";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
@@ -19,9 +20,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
+import { useDispatch } from "react-redux";
 type Props = {};
-
 const { width, height } = Dimensions.get("window");
 const categoryList: SelectedType[] = [
   {
@@ -52,6 +52,7 @@ const AddBudgetPage = (props: Props) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter()
   const id = useUserId()
+  const dispatch = useDispatch()
   const handleSubmit = async () => {
     console.log(id)
     if (amount.length < 1 || category.length < 1 || note.length < 1)
@@ -66,6 +67,7 @@ const AddBudgetPage = (props: Props) => {
         { note, category, amount, userId: id }
       );
       showToast(res.data.message);
+      dispatch(addBudgets(res.data.budget))
     }  
     catch (error: any) {
       if (axios.isAxiosError(error)) {
