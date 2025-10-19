@@ -21,7 +21,7 @@ const BudgetItem = ({budget}: Props) => {
                        <Text style={{fontSize:getFontSize(width,"min") - 2, color:colors.grey}}>Limit: {budget.amount}</Text>
                    </View>
                </View>
-               <Text style={[{fontSize:getFontSize(width, "min"), color:colors.textColor}]}>{progress.toString(2)}%</Text>
+               <Text style={[{fontSize:getFontSize(width, "min"), color:colors.textColor}]}>{progress.toFixed(2)}%</Text>
          </View>
   )
 }

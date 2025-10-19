@@ -3,6 +3,7 @@ import { url } from "@/Constants/url";
 import { getFontSize } from "@/Constants/utils";
 import { useUserId } from "@/services/userServices";
 import { updateBlance } from "@/store/slices/authSlice";
+import { addBudgets } from "@/store/slices/budgetSlice";
 import { addTransactions } from "@/store/slices/transactionSlice";
 import axios from "axios";
 import { useRouter } from "expo-router";
@@ -86,6 +87,7 @@ const NewExpense = (props: Props) => {
         userId: id,
       })
       dispatch(addTransactions(res.data.transaction))
+      dispatch(addBudgets(res.data.budget))
       dispatch(updateBlance({type:"expense", value:Number(amount)}))
       showToast(res.data.message);
     } catch (error: any) {
