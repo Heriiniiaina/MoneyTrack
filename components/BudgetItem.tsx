@@ -1,23 +1,27 @@
 import { colors } from '@/Constants/Color'
-import { getFontSize } from '@/Constants/utils'
+import { BudgetType } from '@/Constants/type'
+import { calculPercent, capitalize, getFontSize } from '@/Constants/utils'
 import React from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import CircularProgressIcon from './ProgressBar'
 
-type Props = {}
+type Props = {
+    budget:BudgetType
+}
 
 const {width, height} = Dimensions.get("window")
-const BudgetItem = (props: Props) => {
+const BudgetItem = ({budget}: Props) => {
+    const progress = calculPercent(Number(budget.amount), Number(budget.used))
   return (
      <View style={style.budgetItem}>
                <View style={style.balance}>
-                   <CircularProgressIcon/>
+                   <CircularProgressIcon budget={budget} progress={progress}/>
                    <View>
-                       <Text style={{fontSize:getFontSize(width,"max") - 3, color:colors.textColor}}>Shopping</Text>
-                       <Text style={{fontSize:getFontSize(width,"min") - 2, color:colors.grey}}>Limit: 1500</Text>
+                       <Text style={{fontSize:getFontSize(width,"max") - 3, color:colors.textColor}}>{capitalize(budget.category)}</Text>
+                       <Text style={{fontSize:getFontSize(width,"min") - 2, color:colors.grey}}>Limit: {budget.amount}</Text>
                    </View>
                </View>
-               <Text style={[{fontSize:getFontSize(width, "min"), color:colors.textColor}]}>75%</Text>
+               <Text style={[{fontSize:getFontSize(width, "min"), color:colors.textColor}]}>{progress.toString(2)}%</Text>
          </View>
   )
 }

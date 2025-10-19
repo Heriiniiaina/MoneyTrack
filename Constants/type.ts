@@ -25,5 +25,6 @@ export type BudgetType = {
     amount:string,
     category:string,
     note:string,
-    date:string
+    date:string,
+    used:string
 }

@@ -54,13 +54,13 @@ const NewIncome = (props: Props) => {
   const id = useUserId()
   const dispatch = useDispatch()
   const handleSubmit = async () => {
-    console.log(id)
+
     if (amount.length < 1 || category.length < 1 || note.length < 1) {
       showToast("Please provide");
       return;
     }
     setIsLoading(true);
-    console.log(id)
+  
     try {
       const res = await axios.post(`${url}/transaction/add`, {
         note,
@@ -72,7 +72,6 @@ const NewIncome = (props: Props) => {
       dispatch(addTransactions(res.data.transaction))
       dispatch(updateBlance({type:"income", value:Number(amount)}))
       showToast(res.data.message);
-      console.log(res.data.transaction)
     } catch (error: any) {
       if (axios.isAxiosError(error)) {
         if (error.response) {

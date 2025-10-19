@@ -12,11 +12,17 @@ const {width, height} = Dimensions.get("window")
 const BudgetList = (props: Props) => {
  const budget:BudgetType[] = useSelector((state:RootState)=>state.budget.budget)
  const budgetList:BudgetType[] = sortBydate(budget)
+ const recent = budgetList.slice(0, 2)
   return (
     <View style={style.container}>
-        <BudgetItem/>
-        <LineHr/>
-        <BudgetItem/>
+        {
+            recent.map((budg, index)=>{
+                return <View key={index}>
+                    <BudgetItem budget={budg}/>
+                    <LineHr/>
+                </View>
+            })
+        }
     </View>
   )
 }

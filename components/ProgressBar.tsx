@@ -1,18 +1,24 @@
 import { colors } from '@/Constants/Color';
-import { FontAwesome } from '@expo/vector-icons'; // Ou une autre lib d'icônes
+import { BudgetType } from '@/Constants/type';
 import React from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
+import { getIconName } from './SelectedComponents';
 
+type Props = {
+  progress?:number,
+  radius?:number,
+  strokeWidth?:number,
+  color?:string,
+  type?:string,
+  budget:BudgetType
+}
 const {width} = Dimensions.get("window")
-let iconSize = width * 0.038;
-if (width < 400)
-    iconSize = width * 0.031
-const CircularProgressIcon = ({ progress = 75, radius = iconSize, strokeWidth = 2, color = '#3498db', type = "heart" }) => {
+const iconSize = width < 400 ? width * 0.05 : width * 0.06;
+const CircularProgressIcon = ({ progress = 75, radius = iconSize, strokeWidth = 2, color = '#3498db', type = "heart" , budget}:Props) => {
   const normalizedRadius = radius - strokeWidth / 2;
   const circumference = 2 * Math.PI * normalizedRadius;
   const strokeDashoffset = circumference - (progress / 100) * circumference;
-
   return (
     <View style={styles.container}>
       <Svg height={radius * 2} width={radius * 2}>
@@ -41,7 +47,9 @@ const CircularProgressIcon = ({ progress = 75, radius = iconSize, strokeWidth = 
         />
       </Svg>
       <View style={[styles.iconWrapper, { width: radius * 2, height: radius * 2 }]}>
-        <FontAwesome name={type} size={radius} color={colors.textColor} />
+        {
+          getIconName(budget.category, true)
+        }
       </View>
     </View>
   );

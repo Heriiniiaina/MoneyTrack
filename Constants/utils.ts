@@ -24,5 +24,9 @@ export const getTime = (isoStringDate: string):string => {
     return time
 }
 
+export const calculPercent = (total:number, used:number):number =>{
+    const percent = (used * 100) / total
+    return percent
+}
 
 

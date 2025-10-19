@@ -74,7 +74,6 @@ const NewExpense = (props: Props) => {
     if (amount.length < 1 || category.length < 1 || note.length < 1) {
       showToast("Please provide");
      
-      console.log
       return;
     }
     setIsLoading(true);
@@ -85,8 +84,7 @@ const NewExpense = (props: Props) => {
         amount,
         type:"expense",
         userId: id,
-      });
-      console.log(res.data)
+      })
       dispatch(addTransactions(res.data.transaction))
       dispatch(updateBlance({type:"expense", value:Number(amount)}))
       showToast(res.data.message);
