@@ -11,8 +11,7 @@ let iconSize = width * 0.08;
 let iconSizeCenter = width * 0.10; 
 let iconCenterX = width * 0.2
 let centerBtnSize = width * 0.14
-console.log(width)
-console.log(height)
+
 if (width <= 400)
 {
   iconSizeCenter = width * 0.06

@@ -1,11 +1,21 @@
+import { logOut } from '@/store/slices/authSlice'
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
+import { useDispatch } from 'react-redux'
 
 const profile = () => {
+  const dispatch = useDispatch()
   return (
-    <View>
-      <Text>profile</Text>
-    </View>
+    <SafeAreaProvider>
+      <SafeAreaView style={{flex:1}}>
+         <View>
+           <TouchableOpacity onPress={()=>dispatch(logOut())}>
+            <Text>Logout</Text>
+           </TouchableOpacity>
+         </View>
+      </SafeAreaView>
+    </SafeAreaProvider>
   )
 }
 

@@ -33,7 +33,6 @@ const login = (props: Props) => {
       showToast(res.data.message)
       const userDecoded:USER = jwtDecode(res.data.token) as USER
       dispatch(setCredentials({token:res.data.token, user:userDecoded}))
-      console.log(userDecoded)
     } catch (error:any) {
       showToast(error.response.data.message)
       console.log(error.response.data)

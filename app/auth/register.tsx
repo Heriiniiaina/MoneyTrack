@@ -68,7 +68,6 @@ const Register = (props: Props) => {
     setIsLoading(true)
     try {
         const res = await axios.post(`${url}/auth/register`, formInput)
-        console.log(res.data)
         showToast("Register successfull")
         router.replace("/auth/login")
     } catch (error:any) {
