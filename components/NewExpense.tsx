@@ -5,6 +5,7 @@ import { useUserId } from "@/services/userServices";
 import { updateBlance } from "@/store/slices/authSlice";
 import { addBudgets } from "@/store/slices/budgetSlice";
 import { addTransactions } from "@/store/slices/transactionSlice";
+import { RootState } from "@/store/store";
 import axios from "axios";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
@@ -16,7 +17,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "./Loading";
 import SelectedComponents, { SelectedType } from "./SelectedComponents";
 import { showToast } from "./ShowToast";
@@ -70,12 +71,17 @@ const NewExpense = (props: Props) => {
   const router = useRouter();
   const id = useUserId()
   const dispatch = useDispatch()
-
+  const balance = useSelector((state:RootState)=>state.auth.user?.balance)
   const handleSubmit = async () => {
     if (amount.length < 1 || category.length < 1 || note.length < 1) {
       showToast("Please provide");
      
       return;
+    }
+    if (Number(amount) > Number(balance))
+    {
+      showToast("Insufficient funds");
+      return 
     }
     setIsLoading(true);
     try {
