@@ -13,6 +13,7 @@ const BudgetList = (props: Props) => {
  const budget:BudgetType[] = useSelector((state:RootState)=>state.budget.budget)
  const budgetList:BudgetType[] = sortBydate(budget)
  const recent = budgetList.slice(0, 2)
+ console.log(recent)
   return (
     <View style={style.container}>
         {
