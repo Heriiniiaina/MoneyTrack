@@ -38,6 +38,10 @@ const authSlice = createSlice({
         state.user.income = action.payload.type == "income" ? (Number(state.user.income) + action.payload.value).toString() :  state.user.income
         state.user.expense = action.payload.type == "expense" ? (Number(state.user.expense) + action.payload.value).toString() :  state.user.expense
       }
+    },
+    updtateVerifiedStatus:(state)=>{
+      if (state.user)
+        state.user.verified = true
     }
   },
 });

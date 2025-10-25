@@ -4,7 +4,8 @@ export type USER = {
     email:string,
     balance:string,
     income:string,
-    expense:string
+    expense:string,
+    verified:boolean
 }
 export type AUTHUSER = {
     token:string | null,

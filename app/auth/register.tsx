@@ -127,6 +127,7 @@ const Register = (props: Props) => {
               <Text style={style.input_label}>Confirm password</Text>
               <TextInput
                 style={style.text_input}
+                secureTextEntry={true}
                 value={confirmPass}
                 onChangeText={(val) => setConfirmPass(val)}
                 placeholder="Enter your password"

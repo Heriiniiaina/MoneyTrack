@@ -10,11 +10,15 @@ export default function AuthNavigator() {
   const isAuthenticated = useSelector(
     (state: RootState) => state.auth.isAuthenticiated
   );
-
+  const isVerified = useSelector((state:RootState)=>state.auth.user?.verified)
+ console.log(isVerified);
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated && isVerified) {
       router.replace("/(tabs)");
-    } else {
+    }
+    else if (isAuthenticated && !isVerified)
+      router.replace("/auth/auth")
+     else {
       router.replace("/auth/login");
     }
   }, [isAuthenticated, router]);
