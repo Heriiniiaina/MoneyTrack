@@ -1,8 +1,9 @@
 import Loading from "@/components/Loading";
 import BudgetAuraTitle from "@/components/Logo";
+import { showToast } from "@/components/ShowToast";
 import { colors } from "@/Constants/Color";
 import { url } from "@/Constants/url";
-import { logOut } from "@/store/slices/authSlice";
+import { logOut, updtateVerifiedStatus } from "@/store/slices/authSlice";
 import { RootState } from "@/store/store";
 import axios from "axios";
 import { useRouter } from "expo-router";
@@ -36,9 +37,11 @@ const VerifyEmail = (props: Props) => {
       setIsLoading(true)
       try {
         const res = await axios.post(`${url}/auth/send-verification-code`, {email})
-        console.log(res.data)
+        console.log(res.data.message)
+        
       } catch (error:any) {
-        console.log(error.response)
+        console.log(error.response.data.message)
+        
       }
       finally {
         setIsLoading(false)
@@ -51,9 +54,12 @@ const VerifyEmail = (props: Props) => {
     setIsLoadingBTn(true)
     try {
       const res = await axios.post(`${url}/auth/verify-verification-code`, {email, code})
-      console.log(res)
-    } catch (error) {
-      console.log(error)
+      console.log(res.data.message)
+      dispatch(updtateVerifiedStatus())
+      router.replace("/(tabs)")
+    } catch (error:any) {
+      console.log(error.response.data)
+      showToast(error.response.data.message)
     }
     finally {
       setIsLoadingBTn(false)

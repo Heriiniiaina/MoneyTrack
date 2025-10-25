@@ -42,10 +42,11 @@ const authSlice = createSlice({
     updtateVerifiedStatus:(state)=>{
       if (state.user)
         state.user.verified = true
+      console.log(state.user)
     }
   },
 });
 
-export const { setCredentials, logOut, updateBlance } = authSlice.actions;
+export const { setCredentials, logOut, updateBlance, updtateVerifiedStatus } = authSlice.actions;
 
 export default authSlice.reducer;
