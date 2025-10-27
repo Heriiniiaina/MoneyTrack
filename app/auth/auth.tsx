@@ -21,13 +21,13 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 
 type Props = {};
-let borderColor = colors.grey 
+
 const {width, height} = Dimensions.get("window")
 const VerifyEmail = (props: Props) => {
   const [isLoading, setIsLoading] = useState<boolean>(false) 
   const [isLoadingBtn, setIsLoadingBTn] = useState<boolean>(false) 
   const  [code, setCode] = useState("")
-  
+  const [borderColor, setBorderColor] = useState(colors.grey)
   const router = useRouter();
   const dispatch = useDispatch()
   const email = useSelector((state:RootState)=>state.auth.user?.email)
@@ -60,14 +60,14 @@ const VerifyEmail = (props: Props) => {
     } catch (error:any) {
       console.log(error.response.data)
       showToast(error.response.data.message)
-       borderColor = "red"
+      setBorderColor("red")
     }
     finally {
       setIsLoadingBTn(false)
     }
   }
   const handleChange = (value:string)=>{
-    borderColor = colors.grey
+    setBorderColor(colors.grey)
     setCode(value)
   }
   return (
@@ -88,7 +88,7 @@ const VerifyEmail = (props: Props) => {
           <View style={style.input}>
             <Text style={style.input_label}>Enter code</Text>
             <TextInput
-              style={style.text_input}
+              style={[style.text_input, {borderColor:borderColor}]}
               value={code}
               onChangeText={(val) => handleChange(val)}
               placeholder="Enter the code"
@@ -170,7 +170,7 @@ const style = StyleSheet.create({
     backgroundColor: colors.background,
     height: height * 0.055,
     width: "100%",
-    borderColor: borderColor,
+   
     borderWidth: 2,
     borderRadius: 10,
     color: colors.textColor,
