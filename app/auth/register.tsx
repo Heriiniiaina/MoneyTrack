@@ -71,7 +71,7 @@ const Register = (props: Props) => {
         showToast("Register successfull")
         router.replace("/auth/login")
     } catch (error:any) {
-        console.log(error.response.data.message)
+        console.log(error.response.data)
     }
     finally{
         setTimeout(()=>{

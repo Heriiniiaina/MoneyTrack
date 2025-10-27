@@ -21,7 +21,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 
 type Props = {};
-
+let borderColor = colors.grey 
 const {width, height} = Dimensions.get("window")
 const VerifyEmail = (props: Props) => {
   const [isLoading, setIsLoading] = useState<boolean>(false) 
@@ -41,7 +41,7 @@ const VerifyEmail = (props: Props) => {
         
       } catch (error:any) {
         console.log(error.response.data.message)
-        
+       
       }
       finally {
         setIsLoading(false)
@@ -60,10 +60,15 @@ const VerifyEmail = (props: Props) => {
     } catch (error:any) {
       console.log(error.response.data)
       showToast(error.response.data.message)
+       borderColor = "red"
     }
     finally {
       setIsLoadingBTn(false)
     }
+  }
+  const handleChange = (value:string)=>{
+    borderColor = colors.grey
+    setCode(value)
   }
   return (
     <SafeAreaProvider>
@@ -85,7 +90,7 @@ const VerifyEmail = (props: Props) => {
             <TextInput
               style={style.text_input}
               value={code}
-              onChangeText={(val) => setCode(val)}
+              onChangeText={(val) => handleChange(val)}
               placeholder="Enter the code"
               placeholderTextColor={colors.white}
             />
@@ -165,7 +170,7 @@ const style = StyleSheet.create({
     backgroundColor: colors.background,
     height: height * 0.055,
     width: "100%",
-    borderColor: colors.grey,
+    borderColor: borderColor,
     borderWidth: 2,
     borderRadius: 10,
     color: colors.textColor,
