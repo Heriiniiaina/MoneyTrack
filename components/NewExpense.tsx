@@ -92,9 +92,12 @@ const NewExpense = (props: Props) => {
         type:"expense",
         userId: id,
       })
+      console.log(res.data)
       dispatch(addTransactions(res.data.transaction))
-      dispatch(addBudgets(res.data.budget))
       dispatch(updateBlance({type:"expense", value:Number(amount)}))
+      if (res.data.modifBudget)
+        dispatch(addBudgets(res.data.budget))
+     
       showToast(res.data.message);
     } catch (error: any) {
       if (axios.isAxiosError(error)) {
